@@ -8,103 +8,67 @@
 //
 
 import SwiftUI
+import MapKit
+import CoreLocation
 
-/// Pantalla de navegación simulada hacia la tienda destino.
 struct MapView: View {
-    
-    /// Acción para avanzar al siguiente paso.
-    let onNext: () -> Void
-    
-    /// Datos de la tienda destino.
+    let agent: OsitoAgent
     let tienda: Tienda
+    let location: LocationService
+    let onLlegada: () -> Void
     
-    @State private var viewModel = MapViewModel()
+    @State private var cameraPosition: MapCameraPosition = .automatic
+    @State private var distancia: Double? = nil
+    @State private var ultimoUmbralAvisado: Int = .max  // para que el Osito no repita avisos
+    @State private var yaSaludo: Bool = false
+    
+    /// Distancia en metros para considerar "llegado"
+    private let umbralLlegada: Double = 130
+    
+    /// Umbrales en los que el Osito da pistas (en metros)
+    private let umbralesAviso = [500, 200, 100, 50]
+    
+    private var coordenadaTienda: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: tienda.latitud, longitude: tienda.longitud)
+    }
     
     var body: some View {
         ZStack {
-            // MARK: - Fondo de mapa simulado
-            mapBackground
+            // MARK: - Mapa real con MapKit
+            Map(position: $cameraPosition) {
+                // Marcador de la tienda
+                Annotation(tienda.nombre, coordinate: coordenadaTienda) {
+                    VStack(spacing: -4) {
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 48, height: 48)
+                            .shadow(radius: 6)
+                            .overlay(Circle().stroke(Color.bimboNavy, lineWidth: 2))
+                            .overlay(Text("🐻").font(.title))
+                        Triangle()
+                            .fill(Color.bimboNavy)
+                            .frame(width: 16, height: 12)
+                    }
+                }
+                
+                // Posición del usuario
+                UserAnnotation()
+            }
+            .mapStyle(.standard(elevation: .realistic))
+            .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // MARK: - Tarjeta superior con info de la tienda
                 topCard
-                
                 Spacer()
-                
-                // MARK: - Panel inferior con distancia y botón
                 bottomSheet
             }
         }
         .onAppear {
-            viewModel.iniciarSimulacion()
+            location.solicitarPermisos()
+            ajustarCamara()
         }
-        .onDisappear {
-            viewModel.detenerSimulacion()
-        }
-        .onChange(of: viewModel.haLlegado) { _, llegó in
-            if llegó {
-                // Auto-transición al llegar (con delay como en el sample TS)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    onNext()
-                }
-            }
-        }
-    }
-    
-    // MARK: - Mapa de fondo simulado
-    
-    private var mapBackground: some View {
-        ZStack {
-            Color(UIColor.systemGray6)
-                .ignoresSafeArea()
-            
-            // Cuadrícula simulada
-            GridPattern()
-                .opacity(0.15)
-            
-            // Pin de destino (Osito)
-            VStack(spacing: -4) {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 48, height: 48)
-                    .shadow(radius: 8)
-                    .overlay(
-                        Circle()
-                            .stroke(Color.bimboNavy, lineWidth: 2)
-                    )
-                    .overlay(
-                        Text("🐻")
-                            .font(.title)
-                    )
-                
-                // Triángulo del pin
-                Triangle()
-                    .fill(Color.bimboNavy)
-                    .frame(width: 16, height: 12)
-            }
-            .offset(y: -100)
-            .modifier(FloatingModifier())
-            
-            // Pin de posición actual
-            ZStack {
-                Circle()
-                    .fill(Color.bimboRed.opacity(0.3))
-                    .frame(width: 24, height: 24)
-                    .modifier(PingModifier())
-                
-                Circle()
-                    .fill(Color.bimboRed)
-                    .frame(width: 12, height: 12)
-                    .overlay(
-                        Circle()
-                            .stroke(Color.white, lineWidth: 3)
-                    )
-            }
-            .offset(
-                x: viewModel.haLlegado ? 0 : -50,
-                y: viewModel.haLlegado ? -100 : 100
-            )
-            .animation(.linear(duration: 8), value: viewModel.haLlegado)
+        .onChange(of: location.ubicacionActual) { _, _ in
+            actualizarDistancia()
         }
     }
     
@@ -114,45 +78,25 @@ struct MapView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Próxima parada")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                        .fontWeight(.medium)
-                    
-                    Text(tienda.nombre)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.bimboNavy)
+                    Text("Próxima parada").font(.caption).foregroundColor(.gray).fontWeight(.medium)
+                    Text(tienda.nombre).font(.title2).fontWeight(.bold).foregroundColor(.bimboNavy)
                 }
-                
                 Spacer()
-                
-                Text(viewModel.etaFormateado)
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.bimboNavy)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(
-                        Capsule()
-                            .fill(Color.bimboCream)
-                    )
+                if let etaStr = etaFormateado {
+                    Text(etaStr)
+                        .font(.subheadline).fontWeight(.bold).foregroundColor(.bimboNavy)
+                        .padding(.horizontal, 12).padding(.vertical, 6)
+                        .background(Capsule().fill(Color.bimboCream))
+                }
             }
-            
             HStack(spacing: 4) {
-                Image(systemName: "mappin.and.ellipse")
-                    .font(.caption)
-                Text(tienda.direccion)
-                    .font(.subheadline)
+                Image(systemName: "mappin.and.ellipse").font(.caption)
+                Text(tienda.direccion).font(.subheadline)
             }
             .foregroundColor(.gray)
         }
         .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
-        )
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white).shadow(color: .black.opacity(0.08), radius: 8, y: 4))
         .padding(.horizontal, 16)
         .padding(.top, 56)
     }
@@ -161,152 +105,162 @@ struct MapView: View {
     
     private var bottomSheet: some View {
         VStack(spacing: 0) {
-            // Handle bar
             RoundedRectangle(cornerRadius: 3)
                 .fill(Color.gray.opacity(0.2))
                 .frame(width: 48, height: 6)
-                .padding(.top, 12)
-                .padding(.bottom, 24)
+                .padding(.top, 12).padding(.bottom, 24)
             
-            // Distancia y ETA
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("\(viewModel.distancia)")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.bimboNavy)
-                        Text("m")
-                            .font(.body)
-                            .foregroundColor(.gray)
-                            .fontWeight(.medium)
+                        Text(distanciaFormateada)
+                            .font(.largeTitle).fontWeight(.bold).foregroundColor(.bimboNavy)
+                        Text(unidadDistancia)
+                            .font(.body).foregroundColor(.gray).fontWeight(.medium)
                     }
-                    Text("Distancia restante")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                    Text("Distancia restante").font(.caption).foregroundColor(.gray)
                 }
-                
                 Spacer()
-                
                 VStack(alignment: .trailing, spacing: 4) {
-                    Text(viewModel.horaETA)
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                    Text("ETA")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                    Text(etaFormateado ?? "--:--")
+                        .font(.title3).fontWeight(.bold).foregroundColor(.primary)
+                    Text("ETA").font(.caption).foregroundColor(.gray)
                 }
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 24)
+            .padding(.horizontal, 24).padding(.bottom, 24)
             
-            // Botón de llegada
+            // Botón principal de llegada (se activa cuando GPS detecta cercanía)
             PrimaryButtonView(
-                title: viewModel.haLlegado ? "Llegué a la tienda" : "En camino...",
+                title: haLlegado ? "Llegué a la tienda" : "En camino...",
                 iconName: "location.fill",
-                disabled: !viewModel.haLlegado,
-                pulsating: viewModel.haLlegado,
-                action: onNext
+                disabled: !haLlegado,
+                pulsating: haLlegado,
+                action: dispararLlegada
             )
             .padding(.horizontal, 24)
-            .padding(.bottom, 32)
+            
+            // 🔧 BOTÓN DEMO — fuerza la llegada sin GPS
+            Button {
+                dispararLlegada()
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "hammer.fill")
+                    Text("Demo: simular llegada")
+                }
+                .font(.caption)
+                .foregroundColor(.gray)
+                .padding(.vertical, 8)
+            }
+            .padding(.bottom, 16)
+            
+            HStack {
+                OsitoFABView(agent: agent)
+                Spacer()
+            }
+            .padding(.bottom, 8)
+        }
+        .onAppear {
+            location.solicitarPermisos()
+            location.iniciarSeguimiento()   // ← agregar esta línea
+            ajustarCamara()
         }
         .background(
             RoundedRectangle(cornerRadius: 24)
                 .fill(Color.white)
-                .shadow(color: .black.opacity(0.1), radius: 16, x: 0, y: -8)
+                .shadow(color: .black.opacity(0.1), radius: 16, y: -8)
                 .ignoresSafeArea(edges: .bottom)
         )
     }
-}
 
-// MARK: - Componentes auxiliares
-
-/// Patrón de cuadrícula SVG para simular un mapa.
-struct GridPattern: View {
-    var body: some View {
-        GeometryReader { geometry in
-            Path { path in
-                let spacing: CGFloat = 40
-                let width = geometry.size.width
-                let height = geometry.size.height
-                
-                // Líneas verticales
-                var x: CGFloat = 0
-                while x <= width {
-                    path.move(to: CGPoint(x: x, y: 0))
-                    path.addLine(to: CGPoint(x: x, y: height))
-                    x += spacing
-                }
-                
-                // Líneas horizontales
-                var y: CGFloat = 0
-                while y <= height {
-                    path.move(to: CGPoint(x: 0, y: y))
-                    path.addLine(to: CGPoint(x: width, y: y))
-                    y += spacing
-                }
-            }
-            .stroke(Color.bimboNavy, lineWidth: 0.5)
+    private func dispararLlegada() {
+        Task {
+            await agent.iniciarVisita(tienda: tienda)
+            try? await Task.sleep(nanoseconds: 1_500_000_000)
+            await MainActor.run { onLlegada() }
         }
     }
-}
-
-/// Forma triangular para el pin del mapa.
-struct Triangle: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-        path.closeSubpath()
-        return path
-    }
-}
-
-/// Animación de flotación vertical para el pin de destino.
-struct FloatingModifier: ViewModifier {
-    @State private var isFloating = false
     
-    func body(content: Content) -> some View {
-        content
-            .offset(y: isFloating ? -10 : 10)
-            .onAppear {
-                withAnimation(
-                    .easeInOut(duration: 2.0)
-                    .repeatForever(autoreverses: true)
-                ) {
-                    isFloating = true
-                }
-            }
-    }
-}
-
-/// Animación de ping (expansión) para el indicador de posición actual.
-struct PingModifier: ViewModifier {
-    @State private var isPinging = false
+    // MARK: - Cálculos
     
-    func body(content: Content) -> some View {
-        content
-            .scaleEffect(isPinging ? 2.0 : 1.0)
-            .opacity(isPinging ? 0.0 : 0.5)
-            .onAppear {
-                withAnimation(
-                    .easeOut(duration: 1.5)
-                    .repeatForever(autoreverses: false)
-                ) {
-                    isPinging = true
-                }
-            }
+    private var haLlegado: Bool {
+        guard let d = distancia else { return false }
+        return d <= umbralLlegada
     }
-}
-
-// MARK: - Preview
-
-#Preview {
-    MapView(
-        onNext: {},
-        tienda: MockDataService.tiendaActual
-    )
+    
+    private var distanciaFormateada: String {
+        guard let d = distancia else { return "--" }
+        if d >= 1000 {
+            return String(format: "%.1f", d / 1000)
+        }
+        return "\(Int(d))"
+    }
+    
+    private var unidadDistancia: String {
+        guard let d = distancia else { return "m" }
+        return d >= 1000 ? "km" : "m"
+    }
+    
+    private var etaFormateado: String? {
+        guard let d = distancia else { return nil }
+        // Asume velocidad promedio caminando+conduciendo de ruta urbana: ~25 km/h
+        let velocidadMs = 25_000.0 / 3600.0  // ≈ 6.94 m/s
+        let segundos = d / velocidadMs
+        let llegada = Date().addingTimeInterval(segundos)
+        let f = DateFormatter()
+        f.dateFormat = "HH:mm"
+        return f.string(from: llegada)
+    }
+    
+    // MARK: - Lógica del Osito durante el trayecto
+    
+    private func actualizarDistancia() {
+        guard let d = location.distanciaA(latitud: tienda.latitud, longitud: tienda.longitud) else { return }
+        self.distancia = d
+        
+        // Saludo inicial al empezar el trayecto
+        if !yaSaludo, d > umbralLlegada {
+            yaSaludo = true
+            Task {
+                await agent.ejecutarTurno("""
+                El vendedor inició la ruta hacia "\(tienda.nombre)".
+                La distancia es de \(Int(d)) metros. Anímalo brevemente y dile que lo guías.
+                NO uses tools, solo motiva (1-2 frases).
+                """)
+            }
+            return
+        }
+        
+        // Avisos por umbrales (solo una vez cada uno, decreciendo)
+        for umbral in umbralesAviso where d <= Double(umbral) && ultimoUmbralAvisado > umbral {
+            ultimoUmbralAvisado = umbral
+            Task {
+                await agent.ejecutarTurno("""
+                El vendedor está a \(umbral) metros de la tienda "\(tienda.nombre)".
+                Dale un aviso breve y motivacional (1 frase). NO uses tools.
+                """)
+            }
+            break
+        }
+        
+        // Llegada — dispara la rutina del Osito
+        if haLlegado && ultimoUmbralAvisado != 0 {
+            ultimoUmbralAvisado = 0
+            Task {
+                // Inicia la visita formalmente — esto activa consultarHistorialTienda
+                await agent.iniciarVisita(tienda: tienda)
+                // Pequeña espera para que termine de hablar antes de transicionar
+                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                await MainActor.run { onLlegada() }
+            }
+        }
+    }
+    
+    private func ajustarCamara() {
+        let region = MKCoordinateRegion(
+            center: coordenadaTienda,
+            latitudinalMeters: 800,
+            longitudinalMeters: 800
+        )
+        cameraPosition = .region(region)
+    }
 }

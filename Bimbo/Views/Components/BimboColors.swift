@@ -22,4 +22,5 @@ extension Color {
     
     /// Gris Bimbo (#E5E7EB) - Bordes y separadores.
     static let bimboGray = Color(red: 229/255, green: 231/255, blue: 235/255)
+    static let bimboYellow = Color(red: 1.000, green: 0.780, blue: 0.000) 
 }

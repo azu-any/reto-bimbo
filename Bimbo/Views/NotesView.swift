@@ -6,138 +6,74 @@
 //
 
 import SwiftUI
-import SwiftData
 
-struct NotesView: View {
-    let onNext: () -> Void
+struct NotasViewIA: View {
+    let agent: OsitoAgent
     let tiendaId: Int
-    @State private var viewModel = NotesViewModel()
-    @Environment(\.modelContext) private var modelContext
+    @State private var nota: String = ""
+    @State private var etiquetas: Set<String> = []
+    
+    private let etiquetasDisponibles = ["Cliente molesto", "Cambio de horario", "Promoción", "Falla pago", "Recomendación"]
     
     var body: some View {
         ZStack {
             Color(UIColor.systemGray6).ignoresSafeArea()
-            
             VStack(spacing: 0) {
-                StepHeaderView(step: 6, title: "Notas del día", subtitle: "Ayuda a mejorar la ruta")
-                
+                StepHeaderView(step: 7, title: "Notas del día", subtitle: "Para el siguiente vendedor")
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
-                        noteInput
-                        quickChips
+                        if !agent.ultimoMensajeOsito.isEmpty {
+                            HStack(alignment: .top, spacing: 12) {
+                                Text("🐻").font(.title)
+                                Text(agent.ultimoMensajeOsito).font(.body).padding(12)
+                                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.white))
+                            }
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Nota").font(.subheadline).fontWeight(.bold)
+                            TextEditor(text: $nota)
+                                .frame(minHeight: 120)
+                                .padding(8)
+                                .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+                            Text("O dicta con el micrófono del Osito 🎤").font(.caption).foregroundColor(.gray)
+                        }
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Etiquetas").font(.subheadline).fontWeight(.bold)
+                            ForEach(etiquetasDisponibles, id: \.self) { e in
+                                Button { toggle(e) } label: {
+                                    HStack {
+                                        Image(systemName: etiquetas.contains(e) ? "checkmark.circle.fill" : "circle")
+                                        Text(e)
+                                        Spacer()
+                                    }
+                                    .padding(12)
+                                    .background(RoundedRectangle(cornerRadius: 12)
+                                        .fill(etiquetas.contains(e) ? Color.bimboNavy.opacity(0.1) : Color.white))
+                                    .foregroundColor(etiquetas.contains(e) ? .bimboNavy : .primary)
+                                }
+                            }
+                        }
                     }
                     .padding(24).padding(.bottom, 100)
                 }
             }
-            
             VStack {
                 Spacer()
-                PrimaryButtonView(title: "Guardar y finalizar", iconName: "chevron.right") {
-                    viewModel.guardarNota(tiendaId: tiendaId, modelContext: modelContext)
-                    onNext()
+                PrimaryButtonView(title: "Guardar y finalizar", iconName: "checkmark") {
+                    Task {
+                        if !nota.isEmpty {
+                            await agent.procesarNotaFinal(nota, etiquetas: Array(etiquetas))
+                        }
+                        await agent.avanzarA(.exito)
+                    }
                 }
                 .padding(24)
-                .background(LinearGradient(colors: [Color(UIColor.systemGray6).opacity(0), Color(UIColor.systemGray6)], startPoint: .top, endPoint: .bottom))
             }
-            
-            VStack { Spacer(); HStack { OsitoFABView(tip: "¡Anotado! Aprenderé de esto para darte mejores recomendaciones la próxima semana."); Spacer() } }
+            VStack { Spacer(); HStack { OsitoFABView(agent: agent); Spacer() } }
         }
     }
     
-    // MARK: - Campo de texto
-    private var noteInput: some View {
-        VStack(spacing: 0) {
-            TextEditor(text: $viewModel.contenidoNota)
-                .frame(minHeight: 128)
-                .scrollContentBackground(.hidden)
-                .padding(4)
-            
-            Divider()
-            
-            HStack {
-                Text("\(viewModel.conteoCaracteres) caracteres")
-                    .font(.caption).foregroundColor(.gray.opacity(0.4))
-                Spacer()
-                Button(action: { viewModel.toggleGrabacion() }) {
-                    ZStack {
-                        Circle()
-                            .fill(viewModel.isRecording ? Color.red.opacity(0.1) : Color.gray.opacity(0.1))
-                            .frame(width: 40, height: 40)
-                        Image(systemName: "mic.fill")
-                            .foregroundColor(viewModel.isRecording ? .red : .gray)
-                    }
-                }
-            }
-            .padding(.horizontal, 8).padding(.vertical, 8)
-        }
-        .padding(12)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white).shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2))
-    }
-    
-    // MARK: - Etiquetas rápidas
-    private var quickChips: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Etiquetas rápidas").font(.subheadline).fontWeight(.bold)
-            
-            FlowLayout(spacing: 8) {
-                ForEach(viewModel.etiquetasDisponibles, id: \.self) { etiqueta in
-                    Button(action: { viewModel.agregarEtiqueta(etiqueta) }) {
-                        Text(etiqueta)
-                            .font(.subheadline)
-                            .foregroundColor(viewModel.etiquetasSeleccionadas.contains(etiqueta) ? .bimboNavy : .gray)
-                            .padding(.horizontal, 16).padding(.vertical, 8)
-                            .background(
-                                Capsule()
-                                    .fill(Color.white)
-                                    .overlay(Capsule().stroke(
-                                        viewModel.etiquetasSeleccionadas.contains(etiqueta) ? Color.bimboNavy : Color.gray.opacity(0.2),
-                                        lineWidth: 1
-                                    ))
-                            )
-                    }
-                }
-            }
-        }
+    private func toggle(_ e: String) {
+        if etiquetas.contains(e) { etiquetas.remove(e) } else { etiquetas.insert(e) }
     }
 }
-
-/// Layout de flujo horizontal que envuelve elementos cuando se acaba el espacio.
-struct FlowLayout: Layout {
-    var spacing: CGFloat = 8
-    
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let result = layout(proposal: proposal, subviews: subviews)
-        return result.size
-    }
-    
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let result = layout(proposal: proposal, subviews: subviews)
-        for (index, position) in result.positions.enumerated() {
-            subviews[index].place(at: CGPoint(x: bounds.minX + position.x, y: bounds.minY + position.y), proposal: .unspecified)
-        }
-    }
-    
-    private func layout(proposal: ProposedViewSize, subviews: Subviews) -> (size: CGSize, positions: [CGPoint]) {
-        let maxWidth = proposal.width ?? .infinity
-        var positions: [CGPoint] = []
-        var x: CGFloat = 0
-        var y: CGFloat = 0
-        var rowHeight: CGFloat = 0
-        
-        for subview in subviews {
-            let size = subview.sizeThatFits(.unspecified)
-            if x + size.width > maxWidth && x > 0 {
-                x = 0
-                y += rowHeight + spacing
-                rowHeight = 0
-            }
-            positions.append(CGPoint(x: x, y: y))
-            rowHeight = max(rowHeight, size.height)
-            x += size.width + spacing
-        }
-        
-        return (CGSize(width: maxWidth, height: y + rowHeight), positions)
-    }
-}
-
-#Preview { NotesView(onNext: {}, tiendaId: 101) }

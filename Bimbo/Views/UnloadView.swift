@@ -10,207 +10,109 @@
 
 import SwiftUI
 
-/// Pantalla de descarga de productos con checklist interactivo.
-struct UnloadView: View {
+struct UnloadViewIA: View {
+    let agent: OsitoAgent
+    @State private var checked: Set<String> = []
     
-    /// Acción para avanzar al siguiente paso.
-    let onNext: () -> Void
-    
-    @State private var viewModel = UnloadViewModel()
+    private var productos: [ConsultarHistorialTool.ItemHistorico] {
+        agent.pedidoAnteriorParaDescarga
+    }
+    private var todosListos: Bool {
+        productos.isEmpty || checked.count == productos.count
+    }
     
     var body: some View {
         ZStack {
             Color(UIColor.systemGray6).ignoresSafeArea()
-            
             VStack(spacing: 0) {
-                // MARK: - Header con progreso
-                StepHeaderView(
-                    step: 1,
-                    title: "Bajar del camión",
-                    subtitle: "Pedido de la semana pasada"
-                )
-                
-                // MARK: - Contenido scrolleable
+                StepHeaderView(step: 1, title: "Bajar del camión", subtitle: "Pedido de la semana pasada")
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
-                        // Barra de progreso
-                        progressSection
-                        
-                        // Lista de productos
-                        productList
+                        progreso
+                        if productos.isEmpty {
+                            emptyState
+                        } else {
+                            ForEach(productos, id: \.productoId) { p in
+                                fila(p)
+                            }
+                        }
                     }
-                    .padding(24)
-                    .padding(.bottom, 100) // Espacio para el botón fijo
+                    .padding(24).padding(.bottom, 100)
                 }
             }
-            
-            // MARK: - Botón fijo inferior
             VStack {
                 Spacer()
-                bottomButton
-            }
-            
-            // MARK: - Osito FAB
-            VStack {
-                Spacer()
-                HStack {
-                    OsitoFABView(tip: "Asegúrate de llevar el diablito, ¡son varias cajas hoy!")
-                    Spacer()
+                PrimaryButtonView(
+                    title: todosListos ? "Continuar" : "Selecciona todo",
+                    iconName: "chevron.right",
+                    disabled: !todosListos
+                ) {
+                    Task { await agent.avanzarA(.caducidad) }
                 }
+                .padding(24)
             }
+            VStack { Spacer(); HStack { OsitoFABView(agent: agent); Spacer() } }
         }
     }
     
-    // MARK: - Sección de progreso
+    private var emptyState: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "shippingbox").font(.system(size: 48)).foregroundColor(.gray)
+            Text("Primera visita — no hay pedido previo.")
+                .multilineTextAlignment(.center).foregroundColor(.gray)
+        }.padding(48).frame(maxWidth: .infinity)
+    }
     
-    private var progressSection: some View {
+    private var progreso: some View {
         VStack(spacing: 8) {
             HStack {
-                Text("Progreso")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .fontWeight(.medium)
+                Text("Progreso").font(.subheadline).foregroundColor(.gray)
                 Spacer()
-                Text("\(viewModel.checkedCount)/\(viewModel.totalCount) cajas")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.bimboNavy)
+                Text("\(checked.count)/\(productos.count) cajas")
+                    .font(.subheadline).fontWeight(.bold).foregroundColor(.bimboNavy)
             }
-            
-            // Barra de progreso animada
-            GeometryReader { geometry in
+            GeometryReader { g in
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color.gray.opacity(0.2))
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color.bimboNavy)
-                        .frame(width: geometry.size.width * viewModel.progreso)
-                        .animation(.easeInOut(duration: 0.3), value: viewModel.progreso)
+                    RoundedRectangle(cornerRadius: 4).fill(Color.gray.opacity(0.2))
+                    RoundedRectangle(cornerRadius: 4).fill(Color.bimboNavy)
+                        .frame(width: g.size.width * (productos.isEmpty ? 0 : Double(checked.count) / Double(productos.count)))
                 }
-            }
-            .frame(height: 8)
+            }.frame(height: 8)
         }
     }
     
-    // MARK: - Lista de productos
-    
-    private var productList: some View {
-        VStack(spacing: 12) {
-            ForEach(Array(viewModel.productos.enumerated()), id: \.element.id) { index, producto in
-                ProductCheckRow(
-                    producto: producto,
-                    onToggle: { viewModel.toggleProducto(producto.id) }
-                )
-                .transition(.asymmetric(
-                    insertion: .offset(y: 20).combined(with: .opacity),
-                    removal: .opacity
-                ))
-                .animation(.easeOut(duration: 0.3).delay(Double(index) * 0.1), value: producto.checked)
-            }
-        }
-    }
-    
-    // MARK: - Botón inferior
-    
-    private var bottomButton: some View {
-        PrimaryButtonView(
-            title: viewModel.todosDescargados ? "Listo, todo bajado" : "Selecciona todo para continuar",
-            iconName: "chevron.right",
-            variant: viewModel.todosDescargados ? .success : .primary,
-            disabled: !viewModel.todosDescargados,
-            action: onNext
-        )
-        .padding(24)
-        .background(
-            LinearGradient(
-                colors: [
-                    Color(UIColor.systemGray6).opacity(0),
-                    Color(UIColor.systemGray6),
-                    Color(UIColor.systemGray6)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        )
-    }
-}
-
-// MARK: - Fila de producto con check
-
-/// Fila individual de producto en el checklist de descarga.
-struct ProductCheckRow: View {
-    let producto: Producto
-    let onToggle: () -> Void
-    
-    var body: some View {
-        Button(action: onToggle) {
+    private func fila(_ p: ConsultarHistorialTool.ItemHistorico) -> some View {
+        let isChecked = checked.contains(p.productoId)
+        return Button {
+            if isChecked { checked.remove(p.productoId) }
+            else { checked.insert(p.productoId) }
+        } label: {
             HStack(spacing: 16) {
-                // Ícono del producto
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(producto.checked ? Color.green.opacity(0.1) : Color.bimboCream)
+                        .fill(isChecked ? Color.green.opacity(0.1) : Color.bimboCream)
                         .frame(width: 48, height: 48)
-                    
-                    Image(systemName: "shippingbox.fill")
-                        .font(.title3)
-                        .foregroundColor(producto.checked ? .green : .bimboNavy)
+                    Image(systemName: "shippingbox.fill").font(.title3)
+                        .foregroundColor(isChecked ? .green : .bimboNavy)
                 }
-                
-                // Nombre y cantidad
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(producto.nombre)
-                        .font(.body)
-                        .fontWeight(.semibold)
-                        .foregroundColor(producto.checked ? .gray : .primary)
-                        .strikethrough(producto.checked, color: .gray)
-                    
-                    Text("\(producto.cantidad) cajas")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                    Text(p.nombre).font(.body).fontWeight(.semibold)
+                        .strikethrough(isChecked).foregroundColor(isChecked ? .gray : .primary)
+                    Text("\(p.unidades) cajas").font(.caption).foregroundColor(.gray)
                 }
-                
                 Spacer()
-                
-                // Indicador de check
                 ZStack {
-                    Circle()
-                        .stroke(producto.checked ? Color.green : Color.gray.opacity(0.3), lineWidth: 2)
+                    Circle().stroke(isChecked ? Color.green : Color.gray.opacity(0.3), lineWidth: 2)
                         .frame(width: 24, height: 24)
-                    
-                    if producto.checked {
-                        Circle()
-                            .fill(Color.green)
-                            .frame(width: 24, height: 24)
-                            .overlay(
-                                Image(systemName: "checkmark")
-                                    .font(.caption)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                            )
+                    if isChecked {
+                        Circle().fill(Color.green).frame(width: 24, height: 24)
+                            .overlay(Image(systemName: "checkmark").font(.caption).fontWeight(.bold).foregroundColor(.white))
                     }
                 }
             }
             .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(producto.checked ? Color.green.opacity(0.05) : Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(
-                                producto.checked ? Color.green.opacity(0.2) : Color.clear,
-                                lineWidth: 2
-                            )
-                    )
-                    .shadow(color: producto.checked ? .clear : .black.opacity(0.03), radius: 4, x: 0, y: 2)
-            )
+            .background(RoundedRectangle(cornerRadius: 16).fill(isChecked ? Color.green.opacity(0.05) : Color.white))
         }
         .buttonStyle(.plain)
     }
-}
-
-// MARK: - Preview
-
-#Preview {
-    UnloadView(onNext: {})
 }

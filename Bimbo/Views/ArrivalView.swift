@@ -41,7 +41,7 @@ struct ArrivalView: View {
                 // MARK: - Burbuja de mensaje dinámica IA
                 burbujaIA
                     .padding(.horizontal, 24)
-                    .offset(y: messageOffset)
+//                    .offset(y: messageOffset)
                     .opacity(messageOpacity)
                 
                 Spacer()

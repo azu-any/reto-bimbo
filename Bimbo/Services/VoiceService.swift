@@ -29,6 +29,17 @@ final class VoiceService: NSObject {
     // Aquí guardaremos la voz del osito
     private var vozOsito: AVSpeechSynthesisVoice?
     
+    // MARK: - "Oye Osito" (Escucha Continua)
+    
+    /// Callback when "Oye Osito" is detected. Empty string = just open UI, non-empty = command to process.
+    var onOyeOsito: ((String) -> Void)?
+    
+    /// Whether continuous listening mode is enabled (set to true to keep listening after TTS finishes).
+    var escuchaContinuaActiva: Bool = false
+    
+    /// Internal flag to track if we already notified the UI to open (prevents double-fire).
+    private var notificoApertura: Bool = false
+    
     override init() {
         super.init()
         synth.delegate = self
@@ -61,8 +72,13 @@ final class VoiceService: NSObject {
         return speech == .authorized && mic
     }
     
+    // MARK: - TTS (Hablar)
+    
     func hablar(_ texto: String, onComplete: (() -> Void)? = nil) {
+        // 1. Stop any active listening FIRST so the mic doesn't steal the audio
         if escuchando { detenerEscucha() }
+        
+        // 2. Configure audio session for playback
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
             try AVAudioSession.sharedInstance().setActive(true)
@@ -80,7 +96,6 @@ final class VoiceService: NSObject {
         u.pitchMultiplier = 1.6   // <--- Un tono mucho más agudo y tierno (máximo es 2)
         u.volume = 1.0
         
-        
         hablando = true
         completionHandler = onComplete
         synth.speak(u)
@@ -91,31 +106,15 @@ final class VoiceService: NSObject {
         hablando = false
     }
     
+    // MARK: - Escucha Puntual (para dictado de notas, etc.)
+    
     func iniciarEscucha(onFinish: @escaping (String) -> Void) {
-        guard !escuchando else { return }
+        guard !escuchando, !hablando else { return }
         transcripcion = ""
         onFinishCallback = onFinish
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: .duckOthers)
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-        } catch { return }
-        
-        request = SFSpeechAudioBufferRecognitionRequest()
-        guard let req = request else { return }
-        req.shouldReportPartialResults = true
-        
-        let input = audioEngine.inputNode
-        let format = input.outputFormat(forBus: 0)
-        input.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
-            req.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        try? audioEngine.start()
-        escuchando = true
-        
-        task = recognizer?.recognitionTask(with: req) { [weak self] result, error in
+        configurarAudioParaEscucha()
+        iniciarMotorReconocimiento { [weak self] result, error in
             guard let self else { return }
             if let result {
                 self.transcripcion = result.bestTranscription.formattedString
@@ -134,7 +133,10 @@ final class VoiceService: NSObject {
     }
     
     func detenerEscucha() {
-        audioEngine.stop()
+        guard escuchando else { return }
+        if audioEngine.isRunning {
+            audioEngine.stop()
+        }
         audioEngine.inputNode.removeTap(onBus: 0)
         request?.endAudio()
         task?.cancel()
@@ -143,20 +145,94 @@ final class VoiceService: NSObject {
         escuchando = false
     }
     
-    // MARK: - "Oye Osito" (Escucha Continua)
-    var onOyeOsito: ((String) -> Void)?
-    private var notificoApertura: Bool = false
+    // MARK: - Escucha Continua ("Oye Osito")
     
     func iniciarEscuchaContinua() {
-        guard !escuchando else { return }
+        escuchaContinuaActiva = true
+        arrancarEscuchaContinua()
+    }
+    
+    func detenerEscuchaContinua() {
+        escuchaContinuaActiva = false
+        detenerEscucha()
+    }
+    
+    private func arrancarEscuchaContinua() {
+        // Don't start if we're speaking or already listening
+        guard escuchaContinuaActiva, !hablando, !escuchando else { return }
+        
         transcripcion = ""
         notificoApertura = false
         
+        configurarAudioParaEscucha()
+        iniciarMotorReconocimiento { [weak self] result, error in
+            guard let self else { return }
+            
+            if let result {
+                let texto = result.bestTranscription.formattedString.lowercased()
+                let triggers = ["oye osito", "oye, osito", "hoy osito", "olle osito"]
+                
+                // Detecta la palabra clave → abre la UI de inmediato (una sola vez)
+                if triggers.first(where: { texto.contains($0) }) != nil, !self.notificoApertura {
+                    self.notificoApertura = true
+                    DispatchQueue.main.async {
+                        self.onOyeOsito?("") // String vacío = solo abrir UI
+                    }
+                }
+                
+                // Cuando el usuario termina de hablar, extraemos el comando
+                if result.isFinal {
+                    if let trigger = triggers.first(where: { texto.contains($0) }) {
+                        // Extraer lo que viene DESPUÉS del trigger
+                        let parts = texto.components(separatedBy: trigger)
+                        let comando = parts.dropFirst()
+                            .joined(separator: " ")
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                        
+                        self.detenerEscucha()
+                        DispatchQueue.main.async {
+                            if !comando.isEmpty {
+                                self.onOyeOsito?(comando)
+                            }
+                        }
+                        // Don't restart here — the agent will call hablar(),
+                        // and the delegate will restart after TTS finishes.
+                    } else {
+                        // No trigger found, just restart listening
+                        self.reiniciarEscuchaContinua()
+                    }
+                }
+            }
+            
+            if error != nil {
+                self.reiniciarEscuchaContinua()
+            }
+        }
+    }
+    
+    private func reiniciarEscuchaContinua() {
+        detenerEscucha()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.arrancarEscuchaContinua()
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func configurarAudioParaEscucha() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.duckOthers, .allowBluetooth, .defaultToSpeaker])
+            try AVAudioSession.sharedInstance().setCategory(
+                .playAndRecord,
+                mode: .measurement,
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+            )
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-        } catch { return }
-        
+        } catch {
+            print("🚨 Audio session error (escucha): \(error)")
+        }
+    }
+    
+    private func iniciarMotorReconocimiento(handler: @escaping (SFSpeechRecognitionResult?, Error?) -> Void) {
         request = SFSpeechAudioBufferRecognitionRequest()
         guard let req = request else { return }
         req.shouldReportPartialResults = true
@@ -171,67 +247,32 @@ final class VoiceService: NSObject {
         try? audioEngine.start()
         escuchando = true
         
-        task = recognizer?.recognitionTask(with: req) { [weak self] result, error in
-            guard let self else { return }
-            if let result {
-                let texto = result.bestTranscription.formattedString.lowercased()
-                let triggers = ["oye osito", "oye, osito", "hoy osito"]
-                
-                // Si detecta la palabra clave, abrimos la interfaz de inmediato
-                if let _ = triggers.first(where: { texto.contains($0) }), !self.notificoApertura {
-                    self.notificoApertura = true
-                    DispatchQueue.main.async {
-                        self.onOyeOsito?("") // String vacío = solo abrir UI
-                    }
-                }
-                
-                // Cuando el usuario termina de hablar
-                if result.isFinal {
-                    if let trigger = triggers.first(where: { texto.contains($0) }) {
-                        let parts = texto.components(separatedBy: trigger)
-                        let comando = parts.dropFirst().joined(separator: trigger).trimmingCharacters(in: .whitespacesAndNewlines)
-                        
-                        self.detenerEscucha()
-                        DispatchQueue.main.async {
-                            if !comando.isEmpty {
-                                self.onOyeOsito?(comando)
-                            }
-                            // Reiniciamos la escucha continua después de un rato
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                self.iniciarEscuchaContinua()
-                            }
-                        }
-                        return
-                    }
-                    self.reiniciarEscucha()
-                }
-            }
-            if error != nil {
-                self.reiniciarEscucha()
-            }
-        }
-    }
-    
-    private func reiniciarEscucha() {
-        detenerEscucha()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self, !self.hablando else { return }
-            self.iniciarEscuchaContinua()
-        }
+        task = recognizer?.recognitionTask(with: req, resultHandler: handler)
     }
 }
+
+// MARK: - AVSpeechSynthesizerDelegate
 
 extension VoiceService: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ s: AVSpeechSynthesizer, didFinish u: AVSpeechUtterance) {
         hablando = false
         completionHandler?()
         completionHandler = nil
-        // Retomar escucha continua tras terminar de hablar
-        iniciarEscuchaContinua()
+        // After TTS finishes, resume continuous listening if it was active
+        if escuchaContinuaActiva {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.arrancarEscuchaContinua()
+            }
+        }
     }
+    
     func speechSynthesizer(_ s: AVSpeechSynthesizer, didCancel u: AVSpeechUtterance) {
         hablando = false
         completionHandler = nil
-        iniciarEscuchaContinua()
+        if escuchaContinuaActiva {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.arrancarEscuchaContinua()
+            }
+        }
     }
 }

@@ -32,8 +32,8 @@ struct StepHeaderView: View {
                     RoundedRectangle(cornerRadius: 2)
                         .fill(index < step ? Color.bimboNavy : Color.gray.opacity(0.2))
                         .frame(
-                            width: index < step ? 16 : 6,
-                            height: 6
+                            width: index < step ? 24 : 16,
+                            height: 8
                         )
                         .animation(.easeInOut(duration: 0.3), value: step)
                 }

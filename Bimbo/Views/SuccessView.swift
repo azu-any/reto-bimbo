@@ -42,21 +42,31 @@ struct SuccessView: View {
                 Text("¡Visita completada!").font(.largeTitle).fontWeight(.bold).foregroundColor(.white)
                     .offset(y: titleOffset).opacity(titleOpacity).padding(.bottom, 8)
                 
-                Text("Doña Lupita quedó surtida").foregroundColor(.blue.opacity(0.6))
+                Text("Doña Lupita quedó surtida").foregroundColor(.white.opacity(0.8))
                     .offset(y: titleOffset).opacity(titleOpacity).padding(.bottom, 48)
                 
                 // Stats
                 VStack(spacing: 16) {
                     HStack {
-                        Text("Cajas entregadas").foregroundColor(.blue.opacity(0.5))
+                        Text("Productos entregados")
+                            .foregroundColor(.white.opacity(0.8))
                         Spacer()
-                        Text("11").font(.title2).fontWeight(.bold)
+                        
+                        Text("11")
+                            .font(.title2)
+                            .fontWeight(.bold)
                     }
-                    Divider().background(Color.white.opacity(0.2))
+                    Divider().background(Color.white.opacity(0.6))
                     HStack {
-                        Text("Venta total").foregroundColor(.blue.opacity(0.5))
+                        Text("Venta total")
+                            .foregroundColor(.white.opacity(0.8))
+                                             
                         Spacer()
-                        Text("$1,240").font(.title2).fontWeight(.bold).foregroundColor(.green.opacity(0.9))
+                        
+                        Text("$1,240")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white.opacity(0.8))
                     }
                 }
                 .foregroundColor(.white)
@@ -70,9 +80,16 @@ struct SuccessView: View {
                 // Siguiente parada
                 VStack(spacing: 16) {
                     HStack(spacing: 8) {
-                        Text("Próxima parada:").font(.subheadline).foregroundColor(.blue.opacity(0.5))
-                        Image(systemName: "mappin.and.ellipse").font(.caption).foregroundColor(.blue.opacity(0.5))
-                        Text(siguienteTienda).font(.subheadline).foregroundColor(.blue.opacity(0.5))
+                        Text("Próxima parada:")
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.7))
+                        
+                        Image(systemName: "mappin.and.ellipse")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.9))
+                        Text(siguienteTienda)
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.9))
                     }
                     
                     Button(action: onNext) {

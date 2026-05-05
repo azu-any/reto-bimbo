@@ -25,31 +25,34 @@ struct MockDataService {
     // MARK: - Tiendas en la ruta
     
     /// Tienda actual a la que se dirige el vendedor.
+    /// Coordenadas reales alineadas con el sembrado de BimboApp.sembrarDatosIniciales.
     static let tiendaActual = Tienda(
-        id: 101,
-        nombre: "Tiendita Doña Lupita",
-        propietario: "Doña Lupita",
-        direccion: "Av. Revolución 452",
-        coordenadas: CLLocationCoordinate2D(latitude: 19.4326, longitude: -99.1332)
+        id: 15766,
+        nombre: "Doña Lupita",
+        direccion: "Av. Reforma 123",
+        latitud: 19.3878,
+        longitud: -99.18626,
+        propietario: "Lupita"
     )
     
     /// Siguiente tienda en la ruta (se muestra al final del flujo).
     static let siguienteTienda = Tienda(
-        id: 102,
+        id: 15767,
         nombre: "Abarrotes El Sol",
-        propietario: "Don Ramón",
         direccion: "Calle Hidalgo 78",
-        coordenadas: CLLocationCoordinate2D(latitude: 19.4350, longitude: -99.1400)
+        latitud: 19.4350,
+        longitud: -99.1400,
+        propietario: "Don Ramón"
     )
     
     // MARK: - Productos a descargar (pedido de la semana pasada)
     
     /// Productos que el vendedor debe bajar del camión en la tienda actual.
     static let productosDescarga: [Producto] = [
-        Producto(id: 1, nombre: "Pan Bimbo Grande", cantidad: 3, precio: 45.0),
-        Producto(id: 2, nombre: "Donas Bimbo", cantidad: 2, precio: 38.0),
-        Producto(id: 3, nombre: "Mantecadas", cantidad: 2, precio: 42.0),
-        Producto(id: 4, nombre: "Tortillinas Tía Rosa", cantidad: 1, precio: 28.0)
+        Producto(id: 73, nombre: "Pan Multigrano Linaza 540g", cantidad: 3, precio: 45.0),
+        Producto(id: 41, nombre: "Bimbollos Ext sAjonjoli 6p", cantidad: 4, precio: 38.0),
+        Producto(id: 72, nombre: "Div Tira Mini Doradita 4p", cantidad: 8, precio: 42.0),
+        Producto(id: 106, nombre: "Wonder 100pct mediano", cantidad: 5, precio: 28.0)
     ]
     
     // MARK: - Productos por caducar
@@ -57,12 +60,12 @@ struct MockDataService {
     /// Productos en el anaquel que están próximos a caducar.
     static let productosCaducidad: [Producto] = [
         Producto(
-            id: 10, nombre: "Pan Blanco Wonder", cantidad: 1, precio: 40.0,
+            id: 106, nombre: "Wonder 100pct mediano", cantidad: 1, precio: 40.0,
             diasParaCaducar: 2, accionCaducidad: "Retirar"
         ),
         Producto(
-            id: 11, nombre: "Submarinos Fresa", cantidad: 1, precio: 15.0,
-            diasParaCaducar: 4, accionCaducidad: "Promoción 2x1"
+            id: 72, nombre: "Div Tira Mini Doradita 4p", cantidad: 1, precio: 15.0,
+            diasParaCaducar: 4, accionCaducidad: "Retirar"
         )
     ]
     
@@ -71,11 +74,11 @@ struct MockDataService {
     /// Sugerencias de acomodo basadas en neuromarketing.
     static let sugerenciasResurtido: [Producto] = [
         Producto(
-            id: 20, nombre: "Gansito", cantidad: 2, precio: 100.0,
+            id: 41, nombre: "Bimbollos Ext sAjonjoli 6p", cantidad: 2, precio: 38.0,
             razonSugerencia: "Color rojo en zona caja: +18% impulso"
         ),
         Producto(
-            id: 21, nombre: "Pan Bimbo", cantidad: 4, precio: 45.0,
+            id: 73, nombre: "Pan Multigrano Linaza 540g", cantidad: 4, precio: 45.0,
             razonSugerencia: "Nivel de ojos del cliente"
         )
     ]
@@ -84,10 +87,9 @@ struct MockDataService {
     
     /// Chips/etiquetas rápidas para facilitar la captura de notas.
     static let etiquetasRapidas: [String] = [
-        "Cambió de dueño",
-        "Renovó refri",
-        "Pidió promoción",
-        "Competencia nueva",
+        "Cambio de dueño",
+        "Renovación",
+        "Cambio de tendero",
         "Cerrado temprano"
     ]
 }

@@ -21,7 +21,7 @@ struct Producto: Identifiable, Hashable {
     /// Días restantes antes de caducar (solo aplica en pantalla de caducidad).
     var diasParaCaducar: Int? = nil
     
-    /// Acción sugerida para productos por caducar ("Retirar", "Promoción 2x1", etc.).
+    /// Acción sugerida para productos por caducar ("Retirar").
     var accionCaducidad: String? = nil
     
     /// Indica si este producto ya fue gestionado en la pantalla de caducidad.

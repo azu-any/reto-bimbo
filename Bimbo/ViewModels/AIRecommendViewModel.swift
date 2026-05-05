@@ -18,7 +18,7 @@ class AIRecommendViewModel {
     var recomendaciones: [Producto] = []
     
     /// Total de cajas en productos activos (aceptados).
-    var totalCajas: Int {
+    var totalUnidades: Int {
         recomendaciones.filter(\.activo).reduce(0) { $0 + $1.cantidad }
     }
     
@@ -51,4 +51,16 @@ class AIRecommendViewModel {
     func productosAceptados() -> [Producto] {
         return recomendaciones.filter(\.activo)
     }
+    
+    
+    func updateCantidad(for id: Int, cantidad: Int) {
+        if let index = recomendaciones.firstIndex(where: { $0.id == id }) {
+            recomendaciones[index].cantidad = cantidad
+            
+            if cantidad == 0 {
+                recomendaciones[index].activo = false
+            }
+        }
+    }
 }
+

@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct NotesView: View {
+    let agent: OsitoAgent
     let onNext: () -> Void
     let tiendaId: Int
     @State private var viewModel = NotesViewModel()
@@ -19,7 +20,7 @@ struct NotesView: View {
             Color(UIColor.systemGray6).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                StepHeaderView(step: 6, title: "Notas del día", subtitle: "Ayuda a mejorar la ruta")
+                StepHeaderView(step: 5, title: "Notas del día", subtitle: "Ayuda a mejorar la ruta")
                 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
@@ -33,14 +34,17 @@ struct NotesView: View {
             VStack {
                 Spacer()
                 PrimaryButtonView(title: "Guardar y finalizar", iconName: "chevron.right") {
-                    viewModel.guardarNota(tiendaId: tiendaId, modelContext: modelContext)
-                    onNext()
+                    Task {
+                        if !viewModel.contenidoNota.isEmpty {
+                            await agent.procesarNotaFinal(viewModel.contenidoNota, etiquetas: Array(viewModel.etiquetasSeleccionadas))
+                        }
+                        await agent.avanzarA(.exito)
+                        onNext()
+                    }
                 }
                 .padding(24)
                 .background(LinearGradient(colors: [Color(UIColor.systemGray6).opacity(0), Color(UIColor.systemGray6)], startPoint: .top, endPoint: .bottom))
             }
-            
-            VStack { Spacer(); HStack { OsitoFABView(tip: "¡Anotado! Aprenderé de esto para darte mejores recomendaciones la próxima semana."); Spacer() } }
         }
     }
     
@@ -140,4 +144,4 @@ struct FlowLayout: Layout {
     }
 }
 
-#Preview { NotesView(onNext: {}, tiendaId: 101) }
+//#Preview { NotesView(onNext: {}, tiendaId: 101) }

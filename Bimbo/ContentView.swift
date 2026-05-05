@@ -2,60 +2,108 @@
 //  ContentView.swift
 //  Bimbo
 //
-//  Created by Azuany Mila Cerón on 5/4/26.
+//  Vista raíz que orquesta el flujo completo de la app.
+//  Usa AppFlowViewModel para controlar qué pantalla se muestra
+//  y gestiona las transiciones animadas entre pasos.
 //
 
 import SwiftUI
 import SwiftData
 
+/// Vista raíz que muestra la pantalla correspondiente al paso actual del flujo.
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @State private var flowVM = AppFlowViewModel()
+    @State private var audioService = AudioService()
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        ZStack {
+            // Switch entre pantallas según el paso actual
+            // Cada pantalla recibe su `onNext` para avanzar el flujo
+            switch flowVM.currentStep {
+            case .splash:
+                SplashView(onNext: { flowVM.avanzar() })
+                    .transition(.opacity)
+                
+            case .mapa:
+                MapView(
+                    onNext: { flowVM.avanzar() },
+                    tienda: flowVM.tiendaActual
+                )
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ))
+                
+            case .llegada:
+                ArrivalView(
+                    onNext: { flowVM.avanzar() },
+                    nombreTienda: flowVM.tiendaActual.propietario
+                )
+                .transition(.opacity)
+                
+            case .descarga:
+                UnloadView(onNext: { flowVM.avanzar() })
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
+                
+            case .caducidad:
+                ExpiringView(onNext: { flowVM.avanzar() })
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
+                
+            case .resurtido:
+                RestockView(onNext: { flowVM.avanzar() })
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
+                
+            case .recomendacionIA:
+                AIRecommendView(
+                    onNext: { flowVM.avanzar() },
+                    tiendaId: flowVM.tiendaActual.id
+                )
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ))
+                
+            case .confirmacion:
+                ConfirmView(onNext: { flowVM.avanzar() })
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
+                
+            case .notas:
+                NotesView(
+                    onNext: { flowVM.avanzar() },
+                    tiendaId: flowVM.tiendaActual.id
+                )
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ))
+                
+            case .exito:
+                SuccessView(
+                    onNext: { flowVM.avanzar() },
+                    siguienteTienda: flowVM.siguienteTienda.nombre
+                )
+                .transition(.opacity)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        .animation(.easeInOut(duration: 0.3), value: flowVM.currentStep)
+        .environment(flowVM)
+        .environment(audioService)
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Nota.self, inMemory: true)
 }

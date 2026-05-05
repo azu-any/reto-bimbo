@@ -16,7 +16,7 @@ struct ConfirmView: View {
             Color(UIColor.systemGray6).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                StepHeaderView(step: 5, title: "Confirmación", subtitle: "Revisión final del pedido")
+                StepHeaderView(step: 4, title: "Confirmación", subtitle: "Revisión final del pedido")
                 
                 ScrollView {
                     VStack(spacing: 24) {
@@ -60,7 +60,7 @@ struct ConfirmView: View {
                     Text("Resumen").fontWeight(.bold)
                 }
                 Spacer()
-                Text("\(viewModel.totalCajas) cajas").font(.subheadline).foregroundColor(.gray)
+                Text("\(viewModel.totalCajas) unidades").font(.subheadline).foregroundColor(.gray)
             }
             .padding(16)
             .background(Color.gray.opacity(0.03))

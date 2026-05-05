@@ -24,7 +24,7 @@ struct RestockView: View {
             VStack(spacing: 0) {
                 // MARK: - Header
                 StepHeaderView(
-                    step: 3,
+                    step: 9,
                     title: "Acomodo Estratégico",
                     subtitle: "Sugerencias de neuromarketing"
                 )
@@ -69,15 +69,6 @@ struct RestockView: View {
                         endPoint: .bottom
                     )
                 )
-            }
-            
-            // MARK: - Osito FAB
-            VStack {
-                Spacer()
-                HStack {
-                    OsitoFABView(tip: "El color rojo atrae la mirada. Pon los Gansitos cerca de la caja para compras de impulso.")
-                    Spacer()
-                }
             }
         }
     }

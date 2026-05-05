@@ -25,25 +25,30 @@ struct SplashView: View {
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+//            Color.white.ignoresSafeArea()
+            Color.bimboNavy.ignoresSafeArea()
+//            LinearGradient(colors: [.blueish, .blueish,.blueish, .blueish.opacity(0.6), .white], startPoint: .top, endPoint: .bottom)
+//                .ignoresSafeArea()
             
-            VStack(spacing: 0) {
+            VStack(spacing: 12) {
                 Spacer()
                 
                 // MARK: - Logo de Bimbo
-                Image(systemName: "shippingbox.fill")
-                    .font(.system(size: 72))
-                    .foregroundColor(.bimboNavy)
+                Image("BimboIcon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200)
                     .scaleEffect(logoScale)
                     .opacity(logoOpacity)
-                    .padding(.bottom, 48)
+                    .padding(.bottom, 38)
                 
                 // MARK: - Saludo al vendedor
-                VStack(spacing: 8) {
+                VStack(spacing: 24) {
                     Text("¡Hola, Carlos!")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.bimboNavy)
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .foregroundColor(.white)
+//                        .foregroundColor(.bimboNavy)
                     
                     // Badge de ruta activa
                     HStack(spacing: 8) {
@@ -52,37 +57,51 @@ struct SplashView: View {
                             .frame(width: 8, height: 8)
                             .modifier(PulseModifier())
                         
-                        Text("Ruta #4521 activa")
+                        Text("Ruta #4521")
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white)
+//                            .foregroundColor(.gray)
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(
                         Capsule()
-                            .fill(Color.bimboCream)
+                            .fill(Color.bimboGray.opacity(0.2))
                             .overlay(
                                 Capsule()
                                     .stroke(Color.bimboGray, lineWidth: 1)
                             )
                     )
+                    .padding()
                 }
                 .offset(y: textOffset)
                 .opacity(textOpacity)
                 
-                Spacer()
                 
                 // MARK: - Spinner de carga
                 Circle()
                     .trim(from: 0, to: 0.75)
-                    .stroke(Color.bimboNavy, lineWidth: 4)
+                    .stroke(Color.white.opacity(0.8), lineWidth: 4)
                     .frame(width: 32, height: 32)
                     .rotationEffect(.degrees(isSpinning ? 360 : 0))
                     .opacity(spinnerOpacity)
                     .padding(.bottom, 48)
+                    .padding(.top)
+                
+//                Spacer()
+                
+                HStack{
+                    Image("OsitoBimboLado")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200)
+                    
+                    Spacer()
+                }
             }
         }
+        .ignoresSafeArea()
         .onAppear {
             // Animación del logo
             withAnimation(.spring(response: 0.5, dampingFraction: 0.6).delay(0.2)) {

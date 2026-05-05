@@ -13,19 +13,23 @@ import SwiftUI
 /// Pantalla de bienvenida al llegar a la tienda con el asistente Osito.
 struct ArrivalView: View {
     
+    let agent: OsitoAgent
+    let tienda: Tienda
+
+    
     /// Acción para avanzar al siguiente paso.
     let onNext: () -> Void
     
     /// Nombre de la tienda para personalizar el saludo.
     let nombreTienda: String
-    
+
     // MARK: - Estado de animaciones
     @State private var messageOffset: CGFloat = 20
     @State private var messageOpacity: Double = 0
     
     var body: some View {
         ZStack {
-            Color.bimboCream.ignoresSafeArea()
+            Color.bimboNavy.opacity(0.1).ignoresSafeArea()
             
             VStack(spacing: 0) {
                 Spacer()
@@ -34,8 +38,8 @@ struct ArrivalView: View {
                 ositoSection
                     .padding(.bottom, 48)
                 
-                // MARK: - Burbuja de mensaje
-                messageBubble
+                // MARK: - Burbuja de mensaje dinámica IA
+                burbujaIA
                     .padding(.horizontal, 24)
                     .offset(y: messageOffset)
                     .opacity(messageOpacity)
@@ -46,7 +50,10 @@ struct ArrivalView: View {
                 PrimaryButtonView(
                     title: "¡Vámonos!",
                     iconName: "chevron.right",
-                    action: onNext
+                    action: { 
+                        Task { await agent.avanzarA(.descarga) }
+                        onNext()
+                    }
                 )
                 .padding(.horizontal, 24)
                 .padding(.bottom, 32)
@@ -66,13 +73,14 @@ struct ArrivalView: View {
         VStack(spacing: 0) {
             // Avatar del Osito
             ZStack {
-                Circle()
-                    .fill(Color.white)
+                Image("OsitoBimbo")
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 160, height: 160)
+                    .clipShape(Circle())
                     .shadow(color: .black.opacity(0.15), radius: 16, x: 0, y: 8)
-                
-                Text("🐻")
-                    .font(.system(size: 80))
+
+
             }
             .modifier(FloatingModifier())
             
@@ -83,6 +91,7 @@ struct ArrivalView: View {
                 }
             }
             .padding(.top, 16)
+            .opacity(agent.voice.hablando ? 1 : 0.3)
         }
     }
     
@@ -101,13 +110,11 @@ struct ArrivalView: View {
                 Text("¡Hola Carlos! Llegamos a ")
                     .font(.body)
                     .fontWeight(.medium)
-                    .foregroundColor(.primary) +
+                    .foregroundColor(.primary)
                 Text(nombreTienda)
                     .font(.body)
                     .fontWeight(.bold)
-                    .foregroundColor(.bimboNavy) +
-                Text(" 🐻")
-                    .font(.body)
+                    .foregroundColor(.bimboNavy)
                 
                 Text("")
                     .font(.caption)
@@ -125,6 +132,24 @@ struct ArrivalView: View {
                     .fill(Color.white)
                     .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
             )
+        }
+    }
+    
+    private var burbujaIA: some View {
+        VStack(spacing: 0) {
+            Triangle().fill(Color.white).frame(width: 24, height: 16).rotationEffect(.degrees(180))
+            VStack(spacing: 8) {
+                Text(agent.ultimoMensajeOsito.isEmpty
+                     ? "¡Hola Carlos! Llegamos a \(tienda.nombre) 🐻"
+                     : agent.ultimoMensajeOsito)
+                    .font(.body)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding(24)
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: 24).fill(Color.white).shadow(color: .black.opacity(0.1), radius: 8, y: 4))
         }
     }
 }
@@ -154,9 +179,9 @@ struct AudioWaveBar: View {
 
 // MARK: - Preview
 
-#Preview {
-    ArrivalView(
-        onNext: {},
-        nombreTienda: "Doña Lupita"
-    )
-}
+//#Preview {
+//    ArrivalView(
+//        onNext: {},
+//        nombreTienda: "Doña Lupita"
+//    )
+//}

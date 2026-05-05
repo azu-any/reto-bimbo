@@ -11,18 +11,21 @@ struct AIRecommendView: View {
     let onNext: () -> Void
     let tiendaId: Int
     @State private var viewModel = AIRecommendViewModel()
+    @State var showListProduct = false
     
     var body: some View {
         ZStack {
             Color(UIColor.systemGray6).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                StepHeaderView(step: 4, title: "Pedido Inteligente", subtitle: "Recomendaciones con IA")
+                StepHeaderView(step: 3, title: "Pedido Inteligente", subtitle: "Recomendaciones con IA")
                 
                 ScrollView {
                     VStack(spacing: 16) {
                         analysisCard
                         recommendationsList
+                        
+                        addProduct
                     }
                     .padding(24)
                     .padding(.bottom, 100)
@@ -35,8 +38,6 @@ struct AIRecommendView: View {
                     .padding(24)
                     .background(LinearGradient(colors: [Color(UIColor.systemGray6).opacity(0), Color(UIColor.systemGray6)], startPoint: .top, endPoint: .bottom))
             }
-            
-            VStack { Spacer(); HStack { OsitoFABView(tip: "La IA tiene un 94% de precisión en esta ruta. ¡Confía en las sugerencias!"); Spacer() } }
         }
         .onAppear { viewModel.cargarRecomendaciones(para: tiendaId) }
     }
@@ -47,39 +48,64 @@ struct AIRecommendView: View {
                 Image(systemName: "sparkles").foregroundColor(.yellow)
                 Text("Análisis de Doña Lupita").fontWeight(.bold)
             }
-            Text("Basado en el clima, día de la semana y ventas históricas, este es el pedido óptimo.")
-                .font(.subheadline).foregroundColor(.blue.opacity(0.7))
-            Divider().background(Color.blue.opacity(0.3))
+            
+            Text("Basado en el día de la semana y ventas históricas, este es el pedido óptimo.")
+                .font(.subheadline)
+                .foregroundColor(.white)
+            
+            Divider().background(Color.white.opacity(0.5))
+            
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Total sugerido").font(.caption).foregroundColor(.blue.opacity(0.6))
-                    Text("\(viewModel.totalCajas) cajas").font(.title2).fontWeight(.bold)
+                    Text("Total sugerido")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.8))
+                    
+                    Text("\(viewModel.totalUnidades) unidades")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white.opacity(0.8))
+
                 }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text("Venta est.").font(.caption).foregroundColor(.blue.opacity(0.6))
-                    Text(viewModel.ventaEstimadaFormateada).font(.title3).fontWeight(.bold).foregroundColor(.green.opacity(0.9))
-                }
+
             }
         }
         .padding(20).foregroundColor(.white)
-        .background(LinearGradient(colors: [Color.bimboNavy, Color.blue.opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing).clipShape(RoundedRectangle(cornerRadius: 16)))
+        .background(
+            LinearGradient(
+                colors: [Color.bimboNavy, Color.bimboNavy.opacity(0.8)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing)
+                .clipShape(RoundedRectangle(cornerRadius: 16)
+                          )
+        )
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .bimboNavy.opacity(0.3), radius: 8, x: 0, y: 4)
+        .sheet(isPresented: $showListProduct) {
+            
+        }
     }
     
     private var recommendationsList: some View {
         VStack(spacing: 12) {
             ForEach(Array(viewModel.recomendaciones.enumerated()), id: \.element.id) { index, producto in
-                AIRecommendationRow(producto: producto, onToggle: { viewModel.toggleRecomendacion(producto.id) })
+                AIRecommendationRow(
+                    producto: producto,
+                    onCantidadChange: { nuevaCantidad in viewModel.updateCantidad(for: producto.id, cantidad: nuevaCantidad) }
+                )
             }
         }
+    }
+    
+    
+    private var addProduct: some View {
+        PrimaryButtonView(title: "Agregar producto", variant: .outline, action: { showListProduct.toggle() } )
     }
 }
 
 struct AIRecommendationRow: View {
     let producto: Producto
-    let onToggle: () -> Void
+    let onCantidadChange: (Int) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -93,14 +119,19 @@ struct AIRecommendationRow: View {
                         }
                     }
                 }
+                
                 Spacer()
-                Toggle("", isOn: Binding(get: { producto.activo }, set: { _ in onToggle() })).tint(.bimboNavy).labelsHidden()
-            }
+                
+                Stepper("",
+                        onIncrement: { onCantidadChange(producto.cantidad + 1) },
+                        onDecrement: { if producto.cantidad > 0 { onCantidadChange(producto.cantidad - 1) } }
+                )
+                            }
             if producto.activo {
                 HStack {
                     Text("Cantidad").font(.subheadline).foregroundColor(.gray)
                     Spacer()
-                    Text("\(producto.cantidad) cajas").font(.subheadline).fontWeight(.bold).foregroundColor(.bimboNavy)
+                    Text("\(producto.cantidad) unidades").font(.subheadline).fontWeight(.bold).foregroundColor(.bimboNavy)
                 }
                 .padding(8).background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.05)))
             }

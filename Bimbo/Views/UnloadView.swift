@@ -49,15 +49,6 @@ struct UnloadView: View {
                 Spacer()
                 bottomButton
             }
-            
-            // MARK: - Osito FAB
-            VStack {
-                Spacer()
-                HStack {
-                    OsitoFABView(tip: "Asegúrate de llevar el diablito, ¡son varias cajas hoy!")
-                    Spacer()
-                }
-            }
         }
     }
     
@@ -71,7 +62,7 @@ struct UnloadView: View {
                     .foregroundColor(.gray)
                     .fontWeight(.medium)
                 Spacer()
-                Text("\(viewModel.checkedCount)/\(viewModel.totalCount) cajas")
+                Text("\(viewModel.checkedCount)/\(viewModel.totalCount) unidades")
                     .font(.subheadline)
                     .fontWeight(.bold)
                     .foregroundColor(.bimboNavy)
@@ -165,7 +156,7 @@ struct ProductCheckRow: View {
                         .foregroundColor(producto.checked ? .gray : .primary)
                         .strikethrough(producto.checked, color: .gray)
                     
-                    Text("\(producto.cantidad) cajas")
+                    Text("\(producto.cantidad) unidades")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }

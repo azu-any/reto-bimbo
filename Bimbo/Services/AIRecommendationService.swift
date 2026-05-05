@@ -9,33 +9,67 @@
 
 import Foundation
 
+import CoreML
+
 /// Servicio mock que simula recomendaciones inteligentes de pedido.
 struct AIRecommendationService {
     
-    /// Genera recomendaciones de productos basadas en datos simulados.
+    /// Genera recomendaciones de productos basadas en el modelo ML BimboRegressor.
     /// - Parameter tiendaId: ID de la tienda para la cual generar recomendaciones.
     /// - Returns: Lista de productos recomendados con razones.
     static func generarRecomendaciones(para tiendaId: Int) -> [Producto] {
-        // Mock: Simula que un modelo de IA analiza:
-        // - Histórico de ventas de la tienda
-        // - Día de la semana (lunes = +12% pan)
-        // - Clima (frío = más pan dulce)
-        // - Tendencias de la zona
         
-        return [
+        var recomendaciones: [Producto] = [
             Producto(
-                id: 30, nombre: "Pan Bimbo Grande", cantidad: 4, precio: 45.0,
-                razonSugerencia: "Histórico +12% lunes"
+                id: 73, nombre: "Pan Multigrano Linaza 540g", cantidad: 0, precio: 45.0,
+                razonSugerencia: "Histórico +12% lunes. Alta demanda proyectada."
             ),
             Producto(
-                id: 31, nombre: "Roles Canela", cantidad: 2, precio: 60.0,
-                razonSugerencia: "Clima frío previsto"
+                id: 41, nombre: "Bimbollos Ext sAjonjoli 6p", cantidad: 0, precio: 38.0,
+                razonSugerencia: "Incremento de venta por temporalidad."
             ),
             Producto(
-                id: 32, nombre: "Donas Bimbo", cantidad: 3, precio: 50.0,
-                razonSugerencia: "Alta demanda en la zona"
+                id: 106, nombre: "Wonder 100pct mediano", cantidad: 0, precio: 28.0,
+                razonSugerencia: "Alta demanda en la zona centro."
             )
         ]
+        
+        do {
+            let config = MLModelConfiguration()
+            let model = try BimboRegressor(configuration: config)
+            
+            // Semana (mock this to 3), Cliente_ID (mock this to 15766)
+            let semanaMock: Int64 = 3
+            let clienteIdMock: Int64 = 15766
+            
+            for i in 0..<recomendaciones.count {
+                let p = recomendaciones[i]
+                
+                // Evaluamos el modelo tabular
+                // Venta_uni_hoy mockeado como base para la predicción
+                let input = BimboRegressorInput(
+                    Semana: semanaMock,
+                    Cliente_ID: clienteIdMock,
+                    Producto_ID: Int64(p.id),
+                    Venta_uni_hoy: 2
+                )
+                
+                let output = try model.prediction(input: input)
+                
+                // La salida es Demanda_uni_equil (target)
+                // Usamos la predicción redondeando hacia arriba
+                let demandaPredictiva = max(1, Int(ceil(output.Demanda_uni_equil)))
+                recomendaciones[i].cantidad = demandaPredictiva
+            }
+        } catch {
+            print("🚨 Error al ejecutar BimboRegressor: \(error)")
+            // Fallback
+            recomendaciones[0].cantidad = 4
+            recomendaciones[1].cantidad = 2
+            recomendaciones[2].cantidad = 3
+        }
+        
+        return recomendaciones
     }
     
     /// Calcula la venta estimada del pedido.

@@ -22,7 +22,7 @@ struct Pedido: Identifiable {
         productos.reduce(0) { $0 + ($1.precio * Double($1.cantidad)) }
     }
     
-    /// Total de cajas/unidades en el pedido.
+    /// Total de unidades en el pedido.
     var totalCajas: Int {
         productos.reduce(0) { $0 + $1.cantidad }
     }

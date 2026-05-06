@@ -143,9 +143,11 @@ struct ProductCheckRow: View {
                         .fill(producto.checked ? Color.green.opacity(0.1) : Color.bimboCream)
                         .frame(width: 48, height: 48)
                     
-                    Image(systemName: "shippingbox.fill")
-                        .font(.title3)
-                        .foregroundColor(producto.checked ? .green : .bimboNavy)
+                    Image(producto.imagenNombre)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 45, height: 45)
+
                 }
                 
                 // Nombre y cantidad

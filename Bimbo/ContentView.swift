@@ -66,11 +66,15 @@ struct ContentView: View {
                 
             case .caducidad:
                 if let agent {
-                    ExpiringView(agent: agent, onNext: { flowVM.avanzar() })
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading)
-                        ))
+                    ExpiringView(
+                        agent: agent,
+                        onNext: { flowVM.avanzar() },
+                        onBack: { flowVM.retroceder() }
+                    )
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
                 }
                 
             case .recomendacionIA:
@@ -104,21 +108,24 @@ struct ContentView: View {
                 }
                 
             case .exito:
-                SuccessView(
-                    onNext: { flowVM.avanzar() },
-                    siguienteTienda: flowVM.siguienteTienda.nombre
-                )
-                .transition(.opacity)
+                if let agent {
+                    SuccessView(
+                        onNext: { flowVM.avanzar() },
+                        siguienteTienda: flowVM.siguienteTienda.nombre,
+                        agent: agent
+                    )
+                    .transition(.opacity)
+                }
             }
             
             // Botón global del chat de IA
-            if let agent = agent, flowVM.currentStep != .splash, flowVM.currentStep != .mapa, flowVM.currentStep != .llegada, flowVM.currentStep != .exito {
+            if let agent = agent, flowVM.currentStep != .splash, flowVM.currentStep != .llegada, flowVM.currentStep != .exito {
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
                         OsitoFABView(agent: agent)
-                            .padding(.bottom, 48)
+                            .padding(.bottom, 52)
                     }
                 }
             }
@@ -146,6 +153,7 @@ struct ContentView: View {
        }
 
     }
+    
 }
 
 #Preview {

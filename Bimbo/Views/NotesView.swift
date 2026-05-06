@@ -24,6 +24,10 @@ struct NotesView: View {
                 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
+                        Text("Di \"Oye Osito\" para escribir con voz")
+                            .foregroundColor(viewModel.isRecording ? .red : .gray)
+
+                        
                         noteInput
                         quickChips
                     }
@@ -51,6 +55,8 @@ struct NotesView: View {
     // MARK: - Campo de texto
     private var noteInput: some View {
         VStack(spacing: 0) {
+            
+            
             TextEditor(text: $viewModel.contenidoNota)
                 .frame(minHeight: 128)
                 .scrollContentBackground(.hidden)
@@ -58,19 +64,12 @@ struct NotesView: View {
             
             Divider()
             
+
+            
             HStack {
                 Text("\(viewModel.conteoCaracteres) caracteres")
                     .font(.caption).foregroundColor(.gray.opacity(0.4))
                 Spacer()
-                Button(action: { viewModel.toggleGrabacion() }) {
-                    ZStack {
-                        Circle()
-                            .fill(viewModel.isRecording ? Color.red.opacity(0.1) : Color.gray.opacity(0.1))
-                            .frame(width: 40, height: 40)
-                        Image(systemName: "mic.fill")
-                            .foregroundColor(viewModel.isRecording ? .red : .gray)
-                    }
-                }
             }
             .padding(.horizontal, 8).padding(.vertical, 8)
         }

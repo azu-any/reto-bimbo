@@ -48,6 +48,16 @@ class AppFlowViewModel {
         }
     }
     
+    /// Regresa al paso anterior del flujo.
+    func retroceder() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            let prevRawValue = currentStep.rawValue - 1
+            if prevRawValue >= AppStep.splash.rawValue {
+                currentStep = AppStep(rawValue: prevRawValue) ?? .splash
+            }
+        }
+    }
+    
     /// Reinicia el flujo completo desde el splash.
     func reiniciar() {
         withAnimation {

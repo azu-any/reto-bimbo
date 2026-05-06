@@ -83,53 +83,63 @@ struct MapView: View {
     // MARK: - Body ────────────────────────────────────────────────────────────
 
     var body: some View {
-        ZStack(alignment: .top) {
-
-            // ── Mapa ────────────────────────────────────────────────────────
-            Map(position: $cameraPosition) {
-                // Pin de la tienda (Osito)
-                Annotation(tienda.nombre, coordinate: destino) {
-                    VStack(spacing: -4) {
-                        Image("OsitoBimbo")
-                            .resizable().scaledToFit()
-                            .frame(width: 48, height: 48)
-                            .clipShape(Circle())
-                            .overlay { Circle().stroke(Color.bimboNavy, lineWidth: 2) }
-                            .shadow(radius: 6)
-                        Triangle()
-                            .fill(Color.bimboNavy)
-                            .frame(width: 14, height: 10)
+        NavigationStack {
+            ZStack(alignment: .top) {
+                
+                // ── Mapa ────────────────────────────────────────────────────────
+                Map(position: $cameraPosition) {
+                    // Pin de la tienda (Osito)
+                    Annotation(tienda.nombre, coordinate: destino) {
+                        VStack(spacing: -4) {
+                            Image("OsitoBimbo")
+                                .resizable().scaledToFit()
+                                .frame(width: 48, height: 48)
+                                .clipShape(Circle())
+                                .overlay { Circle().stroke(Color.bimboNavy, lineWidth: 2) }
+                                .shadow(radius: 6)
+                            Triangle()
+                                .fill(Color.bimboNavy)
+                                .frame(width: 14, height: 10)
+                        }
                     }
-                }
-
-                // Peatón simulado (forzado para la demo)
-                if let mock = mockCoord {
-                    Annotation("Tú", coordinate: mock) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.bimboRed.opacity(0.25))
-                                .frame(width: 28, height: 28)
-                                .modifier(PingModifier())
-                            Circle()
-                                .fill(Color.bimboRed)
-                                .frame(width: 14, height: 14)
-                                .overlay { Circle().stroke(.white, lineWidth: 2) }
+                    
+                    // Peatón simulado (forzado para la demo)
+                    if let mock = mockCoord {
+                        Annotation("Tú", coordinate: mock) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.bimboRed.opacity(0.25))
+                                    .frame(width: 28, height: 28)
+                                    .modifier(PingModifier())
+                                Circle()
+                                    .fill(Color.bimboRed)
+                                    .frame(width: 14, height: 14)
+                                    .overlay { Circle().stroke(.white, lineWidth: 2) }
+                            }
                         }
                     }
                 }
+                .mapStyle(.standard(elevation: .realistic))
+                .ignoresSafeArea()
+                
+                // ── Tarjeta superior ────────────────────────────────────────────
+                topCard
             }
-            .mapStyle(.standard(elevation: .realistic))
-            .ignoresSafeArea()
-
-            // ── Tarjeta superior ────────────────────────────────────────────
-            topCard
-        }
-        // ── Panel inferior automático ────────────────────────────────────────
-        .sheet(isPresented: .constant(true)) {
-            autoStatusPanel
-                .presentationDetents([.fraction(0.28), .medium])
-                .presentationBackgroundInteraction(.enabled)
-                .interactiveDismissDisabled()
+            // ── Panel inferior automático ────────────────────────────────────────
+            .sheet(isPresented: .constant(true)) {
+                autoStatusPanel
+                    .presentationDetents([.fraction(0.28), .medium])
+                    .presentationBackgroundInteraction(.enabled)
+                    .interactiveDismissDisabled()
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: PerfilView(agent: agent)) {
+                        Image(systemName: "person.fill")
+                            .foregroundStyle(.bimboNavy)
+                    }
+                }
+            }
         }
 
         // ── Ciclo de vida ────────────────────────────────────────────────────
@@ -262,7 +272,7 @@ struct MapView: View {
 
         // Saludo inicial antes de empezar a caminar
         yaSaludo = true
-        agent.voice.hablar("¡Qué onda compa! Vamos a \(tienda.nombre), a darle con todo.")
+        agent.voice.hablar("¡Vamos BimboAmigo, a darle!")
 
         mockTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             Task { @MainActor in
@@ -322,16 +332,10 @@ struct MapView: View {
     // MARK: - Lógica compartida ───────────────────────────────────────────────
 
     private func procesarHitos(distancia d: Double) {
-        // Saludo inicial (si por alguna razón no se dio ya)
-        if !yaSaludo, d > Double(umbralesAviso.first ?? 100) {
-            yaSaludo = true
-            agent.voice.hablar("¡Qué onda compa! Vamos a \(tienda.nombre), a darle con todo.")
-        }
-
-        // Hitos intermedios
+        // Hitos intermedios — un solo comentario breve al estar cerca
         for umbral in umbralesAviso where d <= Double(umbral) && ultimoUmbralAvisado > umbral {
             ultimoUmbralAvisado = umbral
-            agent.voice.hablar("¡Ya casi llegamos, un último esfuerzo!")
+            agent.voice.hablar("¡Ya casi llegamos!")
             break
         }
     }

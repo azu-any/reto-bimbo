@@ -30,6 +30,13 @@ struct ArrivalView: View {
     var body: some View {
         ZStack {
             Color.bimboNavy.opacity(0.1).ignoresSafeArea()
+                .overlay(
+                    Image("BimboFondoAzul")
+                        .resizable()
+                        .scaledToFill()
+                        .opacity(0.9)
+                        .clipped()
+                    )
             
             VStack(spacing: 0) {
                 Spacer()
@@ -41,7 +48,7 @@ struct ArrivalView: View {
                 // MARK: - Burbuja de mensaje dinámica IA
                 burbujaIA
                     .padding(.horizontal, 24)
-                    .offset(y: messageOffset)
+//                    .offset(y: messageOffset)
                     .opacity(messageOpacity)
                 
                 Spacer()
@@ -63,6 +70,12 @@ struct ArrivalView: View {
             withAnimation(.easeOut(duration: 0.4).delay(0.3)) {
                 messageOffset = 0
                 messageOpacity = 1.0
+            }
+            // Solo aquí hablamos automáticamente (pantalla de bienvenida al tendero)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                if !agent.ultimoMensajeOsito.isEmpty {
+                    agent.voice.hablar(agent.ultimoMensajeOsito)
+                }
             }
         }
     }

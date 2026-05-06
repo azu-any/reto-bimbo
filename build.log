@@ -1,0 +1,488 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Bimbo.xcodeproj -scheme Bimbo clean build
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+** CLEAN SUCCEEDED **
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'Bimbo' in project 'Bimbo' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk -x c -c /dev/null
+
+ExecuteExternalTool /usr/bin/what -q /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/coremlc
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/coremlc generate /Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor --dry-run yes --deployment-target 26.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk --platform ios --output-partial-info-plist /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/BimboRegressor-CoreMLPartialInfo.plist --container bundle-resources --language Swift --swift-version 5.0
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/osito.icon /Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: c01aa397170ddf0eddb46a595199265d
+Build description path: /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/XCBuildData/c01aa397170ddf0eddb46a595199265d.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk /Users/Azu/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.0-23A339-81ce72e5b06c9602b9d30b56f2eed08a.sdkstatcache
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk -o /Users/Azu/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.0-23A339-81ce72e5b06c9602b9d30b56f2eed08a.sdkstatcache
+
+CreateBuildDirectory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    builtin-create-build-directory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products
+
+CreateBuildDirectory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    builtin-create-build-directory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex
+
+CreateBuildDirectory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    builtin-create-build-directory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    builtin-create-build-directory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos
+
+CreateBuildDirectory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    builtin-create-build-directory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    builtin-create-build-directory /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo-17bc52884ae2566e0f5a95224bd954ef-VFS-iphoneos/all-product-headers.yaml
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo.xcodeproj
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo-17bc52884ae2566e0f5a95224bd954ef-VFS-iphoneos/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.hmap (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.hmap
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-project-headers.hmap (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-project-headers.hmap
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/f2ecf85c5fe396e820b21bc3e86582bf.sb (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/f2ecf85c5fe396e820b21bc3e86582bf.sb
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-own-target-headers.hmap (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/d4d2b06bd0f7782bc5086a9b3b3f6fce.sb (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/d4d2b06bd0f7782bc5086a9b3b3f6fce.sb
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/Entitlements.plist (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/Entitlements.plist
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo_const_extract_protocols.json (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.SwiftFileList (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.SwiftFileList
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.SwiftConstValuesFileList (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo-OutputFileMap.json (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.LinkFileList (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.LinkFileList
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.DependencyStaticMetadataFileList (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.DependencyMetadataFileList (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-generated-files.hmap (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-generated-files.hmap
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-all-target-headers.hmap (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-all-non-framework-target-headers.hmap (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-DebugDylibPath-normal-arm64.txt (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-DebugDylibPath-normal-arm64.txt
+
+WriteAuxiliaryFile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-DebugDylibInstallName-normal-arm64.txt (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    write-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-DebugDylibInstallName-normal-arm64.txt
+
+MkDir /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /bin/mkdir -p /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app
+
+ProcessProductPackaging /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Bimbo.entitlements /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.app.xcent (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "SAM2A296M4.SwiftNFurious.Bimbo";
+    "com.apple.developer.healthkit" = 1;
+    "com.apple.developer.healthkit.background-delivery" = 1;
+    "com.apple.developer.team-identifier" = SAM2A296M4;
+    "get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Bimbo.entitlements -entitlements -format xml -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.app.xcent
+
+ProcessProductPackaging /Users/Azu/Library/Developer/Xcode/UserData/Provisioning\ Profiles/0f223375-0a0f-4e2e-8a9a-8c7ea94d9203.mobileprovision /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/embedded.mobileprovision (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    builtin-productPackagingUtility /Users/Azu/Library/Developer/Xcode/UserData/Provisioning\ Profiles/0f223375-0a0f-4e2e-8a9a-8c7ea94d9203.mobileprovision -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/embedded.mobileprovision
+
+ProcessProductPackagingDER /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.app.xcent /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.app.xcent.der (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /usr/bin/derq query -f xml -i /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.app.xcent -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo.app.xcent.der --raw
+
+Ld /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/__preview.dylib normal (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios26.0 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk -O0 -L/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -F/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -install_name @rpath/Bimbo.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo_dependency_info.dat -Xlinker -no_adhoc_codesign -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/__preview.dylib
+
+CpResource /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/producto_tabla.csv /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/producto_tabla.csv (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/producto_tabla.csv /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app
+
+GenerateAssetSymbols /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/osito.icon /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Assets.xcassets (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/osito.icon /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Assets.xcassets --compile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_dependencies --output-partial-info-plist /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_generated_info.plist --app-icon osito --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 26.0 --platform iphoneos --bundle-identifier SwiftNFurious.Bimbo --generate-swift-asset-symbols /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+MkDir /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_output/thinned (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /bin/mkdir -p /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_output/thinned
+
+CoreMLModelCompile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/ /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /usr/bin/sandbox-exec -D SCRIPT_OUTPUT_FILE_0\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/BimboRegressor.mlmodelc -D SCRIPT_OUTPUT_FILE_1\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/BimboRegressor-CoreMLPartialInfo.plist -D SCRIPT_INPUT_FILE_0\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel -D SCRIPT_INPUT_FILE_1\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel -D SCRIPT_INPUT_ANCESTOR_0\=/ -D SCRIPT_INPUT_ANCESTOR_1\=/Users -D SCRIPT_INPUT_ANCESTOR_2\=/Users/Azu -D SCRIPT_INPUT_ANCESTOR_3\=/Users/Azu/Library -D SCRIPT_INPUT_ANCESTOR_4\=/Users/Azu/Library/Mobile\ Documents -D SCRIPT_INPUT_ANCESTOR_5\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs -D SCRIPT_INPUT_ANCESTOR_6\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b -D SCRIPT_INPUT_ANCESTOR_7\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D SCRIPT_INPUT_ANCESTOR_8\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo -D SCRIPT_INPUT_ANCESTOR_9\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel -D SCRIPT_OUTPUT_ANCESTOR_0\=/ -D SCRIPT_OUTPUT_ANCESTOR_1\=/Users -D SCRIPT_OUTPUT_ANCESTOR_2\=/Users/Azu -D SCRIPT_OUTPUT_ANCESTOR_3\=/Users/Azu/Library -D SCRIPT_OUTPUT_ANCESTOR_4\=/Users/Azu/Library/Developer -D SCRIPT_OUTPUT_ANCESTOR_5\=/Users/Azu/Library/Developer/Xcode -D SCRIPT_OUTPUT_ANCESTOR_6\=/Users/Azu/Library/Developer/Xcode/DerivedData -D SCRIPT_OUTPUT_ANCESTOR_7\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg -D SCRIPT_OUTPUT_ANCESTOR_8\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build -D SCRIPT_OUTPUT_ANCESTOR_9\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex -D SCRIPT_OUTPUT_ANCESTOR_10\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build -D SCRIPT_OUTPUT_ANCESTOR_11\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos -D SCRIPT_OUTPUT_ANCESTOR_12\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build -D SCRIPT_OUTPUT_ANCESTOR_13\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products -D SCRIPT_OUTPUT_ANCESTOR_14\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -D SCRIPT_OUTPUT_ANCESTOR_15\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app -D SRCROOT\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D PROJECT_DIR\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D OBJROOT\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex -D SYMROOT\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products -D DSTROOT\=/tmp/Bimbo.dst -D SHARED_PRECOMPS_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/PrecompiledHeaders -D CACHE_ROOT\=/var/folders/0v/yb_d8dwd1m3dsfq8ggyqm4r80000gp/C/com.apple.DeveloperTools/26.0.1-17A400/Xcode -D CONFIGURATION_BUILD_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -D CONFIGURATION_TEMP_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos -D LOCROOT\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D LOCSYMROOT\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D INDEX_PRECOMPS_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Index.noindex/PrecompiledHeaders -D INDEX_DATA_STORE_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Index.noindex/DataStore -D TEMP_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build -D TARGET_TEMP_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build -D DERIVED_FILE_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources -f /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/f2ecf85c5fe396e820b21bc3e86582bf.sb /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/coremlc compile /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/ --deployment-target 26.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk --platform ios --output-partial-info-plist /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/BimboRegressor-CoreMLPartialInfo.plist --container bundle-resources
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/BimboRegressor.mlmodelc/coremldata.bin
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/BimboRegressor.mlmodelc/analytics/coremldata.bin
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/BimboRegressor.mlmodelc/model0/coremldata.bin
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app/BimboRegressor.mlmodelc/model1/coremldata.bin
+
+MkDir /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_output/unthinned (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /bin/mkdir -p /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_output/unthinned
+
+CoreMLModelCodegen /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /usr/bin/sandbox-exec -D SCRIPT_OUTPUT_FILE_0\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor/BimboRegressor.swift -D SCRIPT_INPUT_FILE_0\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel -D SCRIPT_INPUT_ANCESTOR_0\=/ -D SCRIPT_INPUT_ANCESTOR_1\=/Users -D SCRIPT_INPUT_ANCESTOR_2\=/Users/Azu -D SCRIPT_INPUT_ANCESTOR_3\=/Users/Azu/Library -D SCRIPT_INPUT_ANCESTOR_4\=/Users/Azu/Library/Mobile\ Documents -D SCRIPT_INPUT_ANCESTOR_5\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs -D SCRIPT_INPUT_ANCESTOR_6\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b -D SCRIPT_INPUT_ANCESTOR_7\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D SCRIPT_INPUT_ANCESTOR_8\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo -D SCRIPT_INPUT_ANCESTOR_9\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel -D SCRIPT_OUTPUT_ANCESTOR_0\=/ -D SCRIPT_OUTPUT_ANCESTOR_1\=/Users -D SCRIPT_OUTPUT_ANCESTOR_2\=/Users/Azu -D SCRIPT_OUTPUT_ANCESTOR_3\=/Users/Azu/Library -D SCRIPT_OUTPUT_ANCESTOR_4\=/Users/Azu/Library/Developer -D SCRIPT_OUTPUT_ANCESTOR_5\=/Users/Azu/Library/Developer/Xcode -D SCRIPT_OUTPUT_ANCESTOR_6\=/Users/Azu/Library/Developer/Xcode/DerivedData -D SCRIPT_OUTPUT_ANCESTOR_7\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg -D SCRIPT_OUTPUT_ANCESTOR_8\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build -D SCRIPT_OUTPUT_ANCESTOR_9\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex -D SCRIPT_OUTPUT_ANCESTOR_10\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build -D SCRIPT_OUTPUT_ANCESTOR_11\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos -D SCRIPT_OUTPUT_ANCESTOR_12\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build -D SCRIPT_OUTPUT_ANCESTOR_13\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources -D SCRIPT_OUTPUT_ANCESTOR_14\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated -D SCRIPT_OUTPUT_ANCESTOR_15\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor -D SRCROOT\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D PROJECT_DIR\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D OBJROOT\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex -D SYMROOT\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products -D DSTROOT\=/tmp/Bimbo.dst -D SHARED_PRECOMPS_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/PrecompiledHeaders -D CACHE_ROOT\=/var/folders/0v/yb_d8dwd1m3dsfq8ggyqm4r80000gp/C/com.apple.DeveloperTools/26.0.1-17A400/Xcode -D CONFIGURATION_BUILD_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -D CONFIGURATION_TEMP_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos -D LOCROOT\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D LOCSYMROOT\=/Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -D INDEX_PRECOMPS_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Index.noindex/PrecompiledHeaders -D INDEX_DATA_STORE_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Index.noindex/DataStore -D TEMP_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build -D TARGET_TEMP_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build -D DERIVED_FILE_DIR\=/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources -f /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/d4d2b06bd0f7782bc5086a9b3b3f6fce.sb /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/coremlc generate /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/BimboRegressor.mlmodel /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor --deployment-target 26.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk --platform ios --output-partial-info-plist /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/BimboRegressor-CoreMLPartialInfo.plist --container bundle-resources --language Swift --swift-version 5.0
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor/BimboRegressor.swift
+
+CompileAssetCatalogVariant thinned /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/Bimbo.app /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/osito.icon /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Assets.xcassets (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/osito.icon /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Assets.xcassets --compile /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/assetcatalog_generated_info.plist_thinned --app-icon osito --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 26.0 --platform iphoneos
+
+SwiftDriver Bimbo normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Bimbo -Onone -enforce-exclusivity\=checked @/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk -target arm64-apple-ios26.0 -g -module-cache-path /Users/Azu/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -F /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/Azu/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.0-23A339-81ce72e5b06c9602b9d30b56f2eed08a.sdkstatcache -output-file-map /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/Azu/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/Azu/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/Azu/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo_const_extract_protocols.json -Xcc -iquote -Xcc /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-generated-files.hmap -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-own-target-headers.hmap -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-all-target-headers.hmap -Xcc -iquote -Xcc /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-project-headers.hmap -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/include -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources-normal/arm64 -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/arm64 -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo-Swift.h -working-directory /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -experimental-emit-module-separately -disable-cmo
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift:85:14: warning: The "pan_multigrano" image asset name resolves to the symbol "panMultigrano" which already exists. Try renaming the asset.
+    #warning("The \"pan_multigrano\" image asset name resolves to the symbol \"panMultigrano\" which already exists. Try renaming the asset.")
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 Compiling\ ConsultarHistorialTool.swift,\ MensajeOsito.swift,\ AppStep.swift,\ BimboUserProfile.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/ConsultarHistorialTool.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/MensajeOsito.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/AppStep.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/BimboUserProfile.swift (in target 'Bimbo' from project 'Bimbo')
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/ConsultarHistorialTool.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/MensajeOsito.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/AppStep.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/BimboUserProfile.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ VoiceService.swift,\ AIRecommendViewModel.swift,\ AppFlowViewModel.swift,\ ConfirmViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/AIRecommendViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/AppFlowViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/ConfirmViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: note: use 'AVAudioSession.CategoryOptions.allowBluetoothHFP' instead
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^~~~~~~~~~~~~~
+                                        AVAudioSession.CategoryOptions.allowBluetoothHFP
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/AIRecommendViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: note: use 'AVAudioSession.CategoryOptions.allowBluetoothHFP' instead
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^~~~~~~~~~~~~~
+                                        AVAudioSession.CategoryOptions.allowBluetoothHFP
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/AppFlowViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: note: use 'AVAudioSession.CategoryOptions.allowBluetoothHFP' instead
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^~~~~~~~~~~~~~
+                                        AVAudioSession.CategoryOptions.allowBluetoothHFP
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/ConfirmViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: warning: 'allowBluetooth' was deprecated in iOS 8.0: renamed to 'AVAudioSession.CategoryOptions.allowBluetoothHFP'
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift:284:41: note: use 'AVAudioSession.CategoryOptions.allowBluetoothHFP' instead
+                options: [.duckOthers, .allowBluetooth, .defaultToSpeaker]
+                                        ^~~~~~~~~~~~~~
+                                        AVAudioSession.CategoryOptions.allowBluetoothHFP
+
+SwiftCompile normal arm64 Compiling\ AudioService.swift,\ HealthKitService.swift,\ LocationService.swift,\ MockDataService.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/AudioService.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/HealthKitService.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/LocationService.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/MockDataService.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/AudioService.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/HealthKitService.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/LocationService.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/MockDataService.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ Tienda.swift,\ UserProfile.swift,\ Vendedor.swift,\ AIRecommendationService.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Tienda.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/UserProfile.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Vendedor.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/AIRecommendationService.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Tienda.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/UserProfile.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Vendedor.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/AIRecommendationService.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ Nota.swift,\ Pedido.swift,\ Producto.swift,\ ProductoCatalogo.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Nota.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Pedido.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Producto.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/ProductoCatalogo.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Nota.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Pedido.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Producto.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/ProductoCatalogo.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ UnloadViewModel.swift,\ BimboColors.swift,\ OsitoFABView.swift,\ PrimaryButtonView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/UnloadViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/BimboColors.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/OsitoFABView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/PrimaryButtonView.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/UnloadViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/BimboColors.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/OsitoFABView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/PrimaryButtonView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ StepHeaderView.swift,\ AIRecommendView.swift,\ ArrivalView.swift,\ ConfirmView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/StepHeaderView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/AIRecommendView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ArrivalView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ConfirmView.swift (in target 'Bimbo' from project 'Bimbo')
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/StepHeaderView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/AIRecommendView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ArrivalView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ConfirmView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ ExpiringViewModel.swift,\ MapViewModel.swift,\ NotesViewModel.swift,\ RestockViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/ExpiringViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/MapViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/NotesViewModel.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/RestockViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/ExpiringViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/MapViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/MapViewModel.swift:45:34: warning: reference to captured var 'self' in concurrently-executing code; this is an error in the Swift 6 language mode
+                guard let self = self else { return }
+                                 ^
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/NotesViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/RestockViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ ExpiringView.swift,\ MapView.swift,\ NotesView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ExpiringView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/MapView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/NotesView.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ExpiringView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/MapView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/NotesView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ PerfilView.swift,\ RestockView.swift,\ SplashView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/RestockView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/SplashView.swift (in target 'Bimbo' from project 'Bimbo')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/ConsultarHistorialTool.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/AIModel/MensajeOsito.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/AppStep.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/BimboUserProfile.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Nota.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Pedido.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Producto.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/ProductoCatalogo.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Tienda.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/UserProfile.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Models/Vendedor.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/AIRecommendationService.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/AudioService.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/HealthKitService.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/LocationService.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/MockDataService.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Services/VoiceService.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/AIRecommendViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/AppFlowViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/ConfirmViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/ExpiringViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/MapViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/NotesViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/RestockViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ViewModels/UnloadViewModel.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/BimboColors.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/OsitoFABView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/PrimaryButtonView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/Components/StepHeaderView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/AIRecommendView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ArrivalView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ConfirmView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/ExpiringView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/MapView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/NotesView.swift -primary-file /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift -primary-file /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/RestockView.swift -primary-file /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/SplashView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/SuccessView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/UnloadView.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/BimboApp.swift /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ContentView.swift /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor/BimboRegressor.swift /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift -supplementary-output-file-map /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/supplementaryOutputs-10 -emit-localized-strings -emit-localized-strings-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64 -target arm64-apple-ios26.0 -module-can-import-version DeveloperToolsSupport 23.0.4 23.0.4 -module-can-import-version SwiftUI 7.0.84.1 7.0.84 -module-can-import-version UIKit 9088.1.113 9088.1.113 -disable-cross-import-overlay-search -swift-module-cross-import MapKit /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MapKit.framework/Modules/MapKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/CoreData.swiftoverlay -swift-module-cross-import SwiftData /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/SwiftData.framework/Modules/SwiftData.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libFoundationModelsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#FoundationModelsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftDataMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftDataMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo-dependencies-1.json -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk -I /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -F /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -profile-generate -profile-coverage-mapping -swift-version 5 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/Bimbo_const_extract_protocols.json -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -default-isolation\=MainActor -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/Azu/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -enable-anonymous-context-mangled-names -file-compilation-dir /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/Azu/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.0-23A339-81ce72e5b06c9602b9d30b56f2eed08a.sdkstatcache -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-generated-files.hmap -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-own-target-headers.hmap -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-all-target-headers.hmap -Xcc -iquote -Xcc /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Bimbo-project-headers.hmap -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Products/Debug-iphoneos/include -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources-normal/arm64 -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/arm64 -Xcc -I/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name Bimbo -frontend-parseable-output -disable-clang-spi -target-sdk-version 26.0 -target-sdk-name iphoneos26.0 -clang-target arm64-apple-ios26.0 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/PerfilView.o -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/RestockView.o -o /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/SplashView.o -index-unit-output-path /Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/PerfilView.o -index-unit-output-path /Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/RestockView.o -index-unit-output-path /Bimbo.build/Debug-iphoneos/Bimbo.build/Objects-normal/arm64/SplashView.o -index-store-path /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift:736:18: error: cannot find 'ModelConfiguration' in scope
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+                 ^~~~~~~~~~~~~~~~~~
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift:737:26: error: cannot find 'ModelContainer' in scope
+    let container = try! ModelContainer(for: Tienda.self, Visita.self, Nota.self, configurations: config)
+                         ^~~~~~~~~~~~~~
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/RestockView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/SplashView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Bimbo (in target 'Bimbo' from project 'Bimbo')
+
+EmitSwiftModule normal arm64 (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 Compiling\ SuccessView.swift,\ UnloadView.swift,\ BimboApp.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/SuccessView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/UnloadView.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/BimboApp.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/SuccessView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/UnloadView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/BimboApp.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ExpiringViewModel.swift, MapViewModel.swift, NotesViewModel.swift, RestockViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 Compiling\ ContentView.swift,\ BimboRegressor.swift,\ GeneratedAssetSymbols.swift /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ContentView.swift /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor/BimboRegressor.swift /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftCompile normal arm64 /Users/Azu/Library/Mobile\ Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/ContentView.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift:736:18: error: cannot find 'ModelConfiguration' in scope
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+                 ^~~~~~~~~~~~~~~~~~
+/Users/Azu/Library/Mobile Documents/com~apple~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo/Bimbo/Views/PerfilView.swift:737:26: error: cannot find 'ModelContainer' in scope
+    let container = try! ModelContainer(for: Tienda.self, Visita.self, Nota.self, configurations: config)
+                         ^~~~~~~~~~~~~~
+
+SwiftCompile normal arm64 /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/CoreMLGenerated/BimboRegressor/BimboRegressor.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+
+SwiftCompile normal arm64 /Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Bimbo' from project 'Bimbo')
+    cd /Users/Azu/Library/Mobile\ Documents/com\~apple\~CloudDocs/reto-Bimbo-hack2026-eq07b/Bimbo
+    
+/Users/Azu/Library/Developer/Xcode/DerivedData/Bimbo-dfsuitleybdstufgksqedbrxwheg/Build/Intermediates.noindex/Bimbo.build/Debug-iphoneos/Bimbo.build/DerivedSources/GeneratedAssetSymbols.swift:85:14: warning: The "pan_multigrano" image asset name resolves to the symbol "panMultigrano" which already exists. Try renaming the asset.
+    #warning("The \"pan_multigrano\" image asset name resolves to the symbol \"panMultigrano\" which already exists. Try renaming the asset.")
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SwiftDriverJobDiscovery normal arm64 Compiling Tienda.swift, UserProfile.swift, Vendedor.swift, AIRecommendationService.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AudioService.swift, HealthKitService.swift, LocationService.swift, MockDataService.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftDriverJobDiscovery normal arm64 Compiling Nota.swift, Pedido.swift, Producto.swift, ProductoCatalogo.swift (in target 'Bimbo' from project 'Bimbo')
+
+SwiftDriverJobDiscovery normal arm64 Compiling VoiceService.swift, AIRecommendViewModel.swift, AppFlowViewModel.swift, ConfirmViewModel.swift (in target 'Bimbo' from project 'Bimbo')
+

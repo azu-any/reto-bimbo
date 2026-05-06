@@ -15,11 +15,20 @@ struct Producto: Identifiable, Hashable {
     var cantidad: Int
     var precio: Double
     
+    /// Nombre del asset de imagen en Assets.xcassets (sin extensión).
+    /// Vacío si el producto no tiene imagen asignada.
+    var imagenNombre: String = ""
+    
+    /// Número de lote para identificación rápida (opcional).
+    var lote: String? = nil
+    
     /// Indica si el producto ya fue revisado/marcado en un checklist.
     var checked: Bool = false
     
     /// Días restantes antes de caducar (solo aplica en pantalla de caducidad).
     var diasParaCaducar: Int? = nil
+    
+    var cantidadCaducada: Int? = nil
     
     /// Acción sugerida para productos por caducar ("Retirar").
     var accionCaducidad: String? = nil
